@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>key invoice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 1rem 1rem;
+        }
+
+        .container,
+        .grid-3,
+        .grid-2,
+        .grid-1-5,
+        .row {
+            width: 100%;
+        }
+
+        .container {
+            display: inline-block;
+        }
+
+        .pos-rel {
+            position: relative;
+        }
+
+        .container:after {
+            content: "";
+            clear: both;
+        }
+
+        .d-block {
+            display: inline-block;
+        }
+
+        .t-center {
+            text-align: center;
+        }
+
+        .t-left {
+            text-align: left;
+        }
+
+        .t-right {
+            text-align: right;
+        }
+
+        .t-org-bold {
+            color: black;
+            font-weight: bold;
+        }
+
+        .t-purple-bold {
+            color: #9567E0;
+            font-weight: bold;
+        }
+
+        .t-black-bold {
+            font-weight: bold;
+        }
+
+        .t-purple {
+            color: #9567E0;
+            font-weight: bold;
+        }
+
+        .t-grey {
+            color: #646466;
+        }
+
+        .no-mrg {
+            margin: 0 !important;
+        }
+
+        .no-pad {
+            padding: 0 !important;
+        }
+
+        .pad-1 {
+            padding: 10px;
+        }
+
+        .pad-2 {
+            padding: 20px 20px 10px 20px;
+        }
+
+        .mb-2 {
+            display: inline-block;
+            margin-bottom: 22px;
+        }
+
+        .mb-1 {
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .mb-xs {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .mb-xxs {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .grid-3>div {
+            width: 33%;
+            float: left;
+        }
+
+        .grid-2>div {
+            width: 50%;
+            float: left;
+        }
+
+        .grid-1-5>div {
+            float: left;
+        }
+
+        .grid-1-5>div:first-child {
+            width: 70%;
+        }
+
+        .grid-1-5>div:last-child {
+            width: 30%;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .trash-img {
+            height: 20px;
+            width: auto;
+        }
+
+        .lsd-bar {
+            float: left;
+            width: 40%;
+        }
+
+        .rsd-bar {
+            float: right;
+            width: calc(60% - 20px);
+        }
+
+        .org-block {
+            width: 100%;
+            border: 1px solid #646466;
+            border-top-left-radius: 22px;
+            padding: 1rem 1rem;
+        }
+
+        .blue-block {
+            width: 100%;
+            border: 1px solid #9567E0;
+            border-top-left-radius: 22px;
+            padding: 1rem 1rem;
+        }
+
+        .grey-block {
+            width: 100%;
+            border: 1px solid grey;
+            border-top-left-radius: 22px;
+            padding: 1rem 1rem;
+        }
+
+        .org-divider {
+            display: block;
+            width: 100%;
+            border: 1px solid #646466;
+            margin-bottom: 8px;
+        }
+
+        .gery-divider {
+            display: block;
+            width: 100%;
+            border: 1px solid grey;
+            margin-bottom: 8px;
+        }
+
+        .purple-divider {
+            display: block;
+            width: 100%;
+            border: 1px solid #9567E0;
+            margin-bottom: 8px;
+        }
+
+        .icon-title {
+            position: relative;
+            padding-left: 34px;
+        }
+
+        .icon-title.desk:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -5px;
+            height: 20px;
+            width: 20px;
+            background-image: url('data:image/png;base64,{{icons.computer}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.phone:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 20px;
+            width: 20px;
+            background-image: url('data:image/png;base64,{{icons.phone}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.letter:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 16px;
+            width: 16px;
+            background-image: url('data:image/png;base64,{{icons.letter}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.home:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 16px;
+            width: 16px;
+            background-image: url('data:image/png;base64,{{icons.home}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.bill:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 20px;
+            width: 20px;
+            background-image: url('data:image/png;base64,{{icons.bill}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+
+        .icon-title.clock:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 20px;
+            width: 20px;
+            background-image: url('data:image/png;base64,{{icons.clock}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.euro:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -3px;
+            height: 20px;
+            width: 20px;
+            background-image: url('data:image/png;base64,{{icons.euro}}');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.electric:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -2px;
+            height: 16px;
+            width: 16px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAABeklEQVR4nO2WP0vDYBCHD3FQFP8MIk6CuDqoQyc/gOiqoyBCh0Kbu2RoF8mqOLiI4ODgIII4SjXvL5KhoIN+A3F0dXDQQUFJqeWNTWmqaQKlP3iWDLmHy3E5ol66JvnyCJUuxxuw7b7OF7e9fmLckeArFOtmuvMSjJmmArFLCOZI3C1iZOsYTobkejYZCcEGCT4bi6jdlhKMColCAFYnxFdT7UkwnsOLRJI4JVFHv3giUcfRBXLecPMif+0EXkiwF12iiNF/ShwSYyeACZPkdjA5CSuOwSz2JGrpdaKrOmFilSxnMUDBnUxWQsJ2h/ogVutJSuTIVGsBBPfEOE+7E+/EWGnv38F4CEVQaL223aXqzaFjOUMUaySpe8KP7Q3UfsE14FSfG94YsXpLRsIPq1dtHjz6iYn5wMWl43/OWMN41IbrLN6XR5eoaHfCfkoS6kKTKKUjITjQZmIzHQnGdl3CcJfTkshqS2ghHQnDyVR3vk++PJGORAL5BhgBEHEP8441AAAAAElFTkSuQmCC');
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        .icon-title.zoom:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            height: 33px;
+            width: 33px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAACfUlEQVR4nO2WX4hMURzHv/5TIqHwRB6kPMijEk8KCStFEUr+Nu7vNzubxcOUN+VdUuJJbdQSs93fb8ZlHyYPGw+elAdFK0JbdmUZRvfOnbtnZnd275k7dj3st6bm1Pmd+znn/H6/8wWmZaN2dw1IMmAtgOUdSIfBOgSS1yC5B5IjuKCL8U/UIavAehMkv8BaHvdH+gUs7Ujl5rUOgPJbwPqp9mPyDSy9ILkLlm6Q9oG1VDeniIy3IjmAk98RHnl1l6/gSBuy3vxRc1O55WDtqJxEdb68BfWsTAAg60E6YOzsKg50zZowzochfWqcyvMxoWOJpTdaKC2XrWKzXXNB8sQAuWgPQO5uY4GHQHmG9RrndClIP4bXOBCMrcTSHQKU4BTWoVmRpkY2kz9lAVBcENR+JQ88JJHfM6qJTfo4fqDjbjSqoRNJxfosXK8/fhDpLuMIDyaGILkTbug3st7seEGs+yMIJ783MQTr9Wi9s97CeEHpwuaR0tQziSFIH4SN67vtO1EOE/N2IoBsdiZIPoQQL+yCWV+GEJ+DamlWLFuNJL9mF0xyqSUVElWG/MF5d4NdcCq3yHg5h0D5TfYAQrVdtxmRnDBew/dB/4gPcDzyHqSDcHpWNwfhi+WGcS2DIOVxzYqf1KS36kzOMEj3oGmd7JsTOKpa99RfqX33MBzdBpadIDkN1vtBGY7tthKC+PL7BenXCa3dyPW9AcvPUSCJm1/noyVguRKY2oYAUgzywW/PvgOrB/HHrejCgTKFtYH1S7vHQHq08t9bhno1AmF3HyZVTqMTkbb/AERLLXmlWwLiyCFMMciPwL9MupwIZIoATBByt0fjaaFWfwESVyNlQFhb/wAAAABJRU5ErkJggg==');
+        }
+
+        .purple-bg {
+            background: #9567E0;
+            color: #FFF;
+        }
+
+        .soft-purple-bg {
+            background: #e8c7fd;
+            color: #646466;
+        }
+
+        .soft-blue-bg-2 {
+            background: #c7ebfc;
+            color: #f0f0f0;
+        }
+
+        .soft-grey-bg {
+            background: #dadada;
+            color: black;
+        }
+
+        .disp-ib {
+            display: inline-block;
+        }
+
+        .float-l {
+            float: left;
+        }
+
+
+        .w-4 {
+            width: 40%;
+            max-width: 40%;
+        }
+
+        .w-3 {
+            width: 30%;
+            max-width: 30%;
+        }
+
+        .w-2 {
+            width: 20%;
+            max-width: 20%;
+        }
+
+        .w-1 {
+            width: 10%;
+            max-width: 10%;
+        }
+
+        .bw-l {
+            border-left: 1px solid #FFF;
+        }
+
+        .pr-xs {
+            padding-right: 5px;
+        }
+
+        .pl-xs {
+            padding-left: 5px;
+        }
+
+        .t-xxs {
+            font-size: 1vw;
+        }
+
+        .t-xs {
+            font-size: 2vw;
+        }
+
+        .t-medium {
+            font-size: 2.5vw;
+        }
+
+        .t-large {
+            font-size: 3vw;
+        }
+
+        h3 {
+            font-size: 8px;
+        }
+
+        .chart-base {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            bottom: 20px;
+            left: 0;
+            border-bottom: 1px solid #646466;
+        }
+
+        .b-chart {
+            position: relative;
+            height: 220px;
+        }
+
+        .b-chart>div {
+            position: absolute;
+            width: 40px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            background: #c4d600;
+            border: 1px solid #646466;
+            border-bottom-width: 0;
+        }
+
+        .b-chart>span {
+            position: absolute;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            color: #646466;
+            font-size: 2vw;
+            bottom: -20px;
+        }
+
+        .b-chart>b {
+            position: absolute;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            color: #646466;
+            font-size: 1.8vw;
+        }
+
+        .b-chart.chart-1>div {
+            height: 20px;
+        }
+
+        .b-chart.chart-2>div {
+            height: 70px;
+            background: #61cdf2;
+        }
+
+        .b-chart.chart-3>div {
+            height: 44px;
+        }
+
+        .b-chart.chart-4>div {
+            height: 120px;
+            background: #61cdf2;
+        }
+
+        .b-chart.chart-5>div {
+            height: 60px;
+        }
+
+        .b-chart.chart-1>b {
+            bottom: 25px
+        }
+
+        .b-chart.chart-2>b {
+            bottom: 75px
+        }
+
+        .b-chart.chart-3>b {
+            bottom: 49px
+        }
+
+        .b-chart.chart-4>b {
+            bottom: 125px
+        }
+
+        .b-chart.chart-5>b {
+            bottom: 65px
+        }
+
+        .w-1 {
+            width: 100%;
+        }
+
+        .container-table {
+            padding: 5px;
+            width: 100%;
+            background-color: #e8c7fd;
+        }
+
+        thead {
+            font-size: 2vw;
+        }
+
+        tbody {
+            font-size: 1.5vw;
+        }
+
+        th,
+        td {
+            text-align: left;
+            border: none;
+            padding: 0px 10px;
+            border-left: 1px solid #f0f0f0;
+        }
+
+        th {
+            font-size: 2.5vw;
+        }
+
+        td {
+            font-size: 2vw;
+        }
+
+
+        th:first-child,
+        td:first-child {
+            border-left: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="lsd-bar">
+            <div class="grid-3">
+                <div style="width: 100%;">
+                    <div class="row t-left mb-xs t-medium">
+                        <div class="t-org-bold">{{translate "contactUs"}}</div>
+                        <div class="t-large">N° client : <span class="t-medium">{{customer.reference}}</span></div>
+                        <div class="t-large">Identifiant Internet : <span class="t-medium"
+                                style="text-transform: uppercase;">{{customer.contact.email}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="org-block mb-xs">
+                <div class="mb-xs">
+                    <div class="row t-left icon-title desk t-large t-org-bold">Par Internet</div>
+                    <div class="row t-left">
+                        <h3 class="no-mrg" style="margin-top: 6px!important;">key.fr</h3>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="row t-left t-org-bold t-xs">Par Internet</div>
+                    <div class="row t-left mb-xxs">
+                        <h3 class="no-mrg">KEY & MOI</h3>
+                    </div>
+                </div>
+
+                <div class="row t-left t-xs t-org-bold">Mail</div>
+                <div class="row t-left mb-xs">
+                    <h3 class="no-mrg">serviceclient@key.fr</h3>
+                </div>
+
+                <div class="org-divider"></div>
+
+                <div class="row t-left t-large mb-1 icon-title phone t-org-bold">Par téléphone</div>
+                <div class="row t-center mb-1 t-medium">
+                    Du lundi au samedi dès 8h et jusqu’à 20h
+                    <br><b>3004</b>
+                    <br>(Service et appel gratuits)
+                    <br>Mon Compte Sur Serveur Vocal
+                    <br><b>09 70 83 33 33</b>
+                    <br>(Service gratuit + prix appel)
+                </div>
+                <div class="org-divider"></div>
+
+                <div class="row t-left mb-1 icon-title letter t-org-bold t-large">Par courrier</div>
+                <div class="row t-center mb-xs t-medium">
+                    <b>KEY SERVICE CLIENTS</b> TSA 21941
+                    <br>62978 ARRAS CEDEX 9
+                </div>
+                <div class="gery-divider"></div>
+                <div class="row t-center t-grey t-medium">
+                    <b>Urgence dépannage Electricité (Enedis)</b>
+                    <br>0972675075 (Service gratuit + prix appel)
+                </div>
+
+            </div>
+
+            <div class="row mb-xs t-org-bold">
+                <h3 class="no-mrg">NOUS ADRESSER VOTRE CHEQUE ENERGIE</h3>
+            </div>
+
+            <div class="org-block mb-xs">
+                <div class="row t-left mb-xs icon-title desk t-org-bold t-large">Par Internet</div>
+                <div class="row t-left mb-xs t-grey t-medium">
+                    https://www.chequeenergie.gouv.fr/
+                </div>
+                <div class="row t-left mb-xs icon-title letter t-org-bold t-large">Par courrier</div>
+                <div class="row t-left t-grey t-medium">
+                    KEY TSA 81401
+                    <br>87014 LIMOGES Cedex 1
+                </div>
+            </div>
+
+            <div class="blue-block mb-1">
+                <div class="row t-left icon-title home t-purple-bold mb-xs t-large">Lieu de consommation</div>
+                <div class="row t-left mb-xs t-grey t-medium">
+                    <br>{{pos.address.number}} {{pos.address.street}}
+                    <br>{{pos.address.number}} {{pos.address.box}}
+                    <br>{{pos.address.postalCode}} {{pos.address.city}}
+                </div>
+                <div class="row t-left t-purple-bold t-large mb-xs">Titulaire du contrat</div>
+                <div class="row t-left t-grey t-medium">
+                    M. {{customer.individual.lastName}} {{customer.individual.firstName}}
+                </div>
+                <div class="row t-left t-grey t-medium mb-xs">N° de contrat : {{contrat.reference}}</div>
+                <div class="row t-left t-grey t-medium">
+                    • Point de livraison (PDL) :
+                    {{pos.id}}
+                    <br>• Puissance : {{capacities.value}} {{capacities.unit}}
+                    <br>•  {{dynamicTranslate "param_touGroup" configuration.touGroup}}
+                </div>
+
+            </div>
+
+        </div>
+        <div class="rsd-bar">
+            <div class="grid-3 mb-1">
+                <div> &nbsp </div>
+                <div class="t-right t-medium" style="white-space:nowrap;">Document à conserver 5 ans</div>
+                <div class="t-right t-medium">Page 1/4</div>
+            </div>
+
+            <div class="grid-3 mb-2">
+                <div class="t-left">
+                    <svg class="logo-img d-block" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                        viewBox="0 0 672 707">
+                        <defs>
+                            <linearGradient id="a" x1="20.664%" x2="91.467%" y1="75.215%" y2="50%">
+                                <stop offset="0%" stop-color="#582CFF"></stop>
+                                <stop offset="100%" stop-color="#57F5D2"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#a)" fill-rule="evenodd"
+                            d="M628.838 774.315c-63.802 0-115.523-51.818-115.523-115.739 0-63.92 51.721-115.739 115.523-115.739 63.801 0 115.523 51.818 115.523 115.74 0 63.92-51.722 115.738-115.523 115.738zm-203.69-390.619c80.157-19.93 149.277-47.021 207.36-81.273 16.42-11.952 36.625-19 58.473-19 55.002 0 99.589 44.67 99.589 99.774 0 55.105-44.587 99.775-99.589 99.775-1.461 0-2.915-.031-4.361-.094l.025.094c-.884-.082-1.767-.163-2.647-.241a99.98 99.98 0 0 1-3.442-.299c-89.45-7.534-160.177 4.31-212.18 35.533a.195.195 0 0 1-.034-.048c-10.282 5.707-22.111 8.956-34.698 8.956-39.601 0-71.704-32.163-71.704-71.838 0-36.795 27.612-67.13 63.209-71.339zM753.102 792.85l-.045-.009c31.099-74.158 44.222-140.695 39.369-199.61a92.374 92.374 0 0 1-1.855-18.466c0-50.696 41.02-91.793 91.622-91.793 50.6 0 91.621 41.097 91.621 91.793 0 19.157-5.857 36.943-15.875 51.66-34.743 70.257-50.516 133.742-47.317 190.456a84.578 84.578 0 0 1 1.049 13.308c0 46.288-37.453 83.81-83.655 83.81-46.2 0-83.654-37.522-83.654-83.81 0-13.416 3.146-26.096 8.74-37.34zM468.752 943.266c-50.329-95.48-94.218-158.439-131.669-188.877-20.988-13.479-34.896-37.054-34.896-63.885 0-41.879 33.886-75.829 75.687-75.829 41.617 0 75.389 33.652 75.686 75.276 10.203 59.582 48.966 108.1 116.287 145.554 29.847 11.526 51.024 40.538 51.024 74.504 0 44.083-35.67 79.82-79.671 79.82-32.155 0-59.86-19.084-72.448-46.563z"
+                            transform="translate(-302 -283)"></path>
+                    </svg>
+                </div>
+                <div> &nbsp </div>
+            </div>
+
+            <div
+                style="display: -webkit-flex;align-items: center; -webkit-align-items: center;justify-content: center; -webkit-justify-content: center;">
+                <h3 class="mb-1 t-medium">M. {{customer.individual.lastName}} {{customer.individual.firstName}}<br><span
+                        style="text-transform: uppercase;">{{customer.address.street}}</span><br>
+                    {{customer.address.postalCode}} {{customer.address.city}}</h3>
+            </div>
+            <div class="row t-left mb-2">
+                <div class="blue-block mb-1 no-pad">
+                    <div class="grid-1-5" style="display: -webkit-flex;">
+                        <div>
+                            <div class="row pad-2" ">
+                                <div class=" row t-left mb-xxs icon-title bill t-purple-bold no-mrg">
+                                <div class="t-large">Facture du {{invoice.billDate}}</div>
+                            </div>
+                            <div class="row t-left t-xs t-purple-bold icon-title">N° {{invoice.reference}}</div>
+                        </div>
+                        <div class="row soft-purple-bg pad-2 disp-ib">
+                            <div class="grid-2 disp-ib t-medium">
+                                <div class="t-xs">Total hors taxe</div>
+                                <div class="t-right">{{invoice.totalWithoutVat}} €</div>
+                            </div>
+                            <div class="grid-2 disp-ib t-medium">
+                                <div class="t-xs">TVA</div>
+                                <div class="t-right">{{invoice.totalVat}}€</div>
+                            </div>
+                            <div class="grid-2 mb-xs t-medium">
+                                <div class="t-xs">Paiements déjà effectués</div>
+                                <div class="t-right">0€</div>
+                            </div>
+                            <div class="gery-divider"></div>
+                            <div class="grid-2 disp-ib">
+                                <div class="t-left t-purple-bold t-large">Facture TTC</div>
+                                <div class="t-right t-purple-bold t-large">{{invoice.totalAmount}} €</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="purple-bg t-center">
+                        <div class="t-medium"
+                            style="height: 100%;display: -webkit-flex;flex-direction: column; -webkit-flex-direction: column; margin-top: 30px">
+                            <div style="margin-bottom: 30px;">
+                                <div>Montant totale</div>
+                                <div class="t-large"><b>{{invoice.totalAmount}}€</b></div>
+                                <div>TTC</div>
+                            </div>
+                            <div>
+                                <div>Prélevé le</div>
+                                <div>{{invoice.paymentDate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grey-block t-medium mb-1">
+                <div class="row mb-1 t-left icon-title clock">
+                    <div class="t-large">Les prochaines étapes</div>
+                </div>
+                <div class="row t-left t-grey"><span class="t-purple-bold">•</span> Prochaine facture vers le
+                    {{contrat.billAfterDate}}.</div>
+                <div class="row t-left t-grey"><span class="t-purple-bold">•</span> Votre prochain relevé de compteur
+                    vers le {{pos.readingCycle}}</div>
+            </div>
+            <div class="blue-block">
+                <div class="row mb-1 t-purple-bold t-left icon-title euro">
+                    <div class="t-large">{{actor.titlePayment}}</div>
+                </div>
+                {{#ifCond actor.third.financialInformation.paymentMode '===' 'directDebit'}}
+                <div class="row t-grey t-medium">
+                    <div class="row mb-2">Le montant de {{invoice.totalAmount}}€ sera prélevé le {{invoice.paymentDate}}
+                        sur le compte ci-dessous :
+                    </div>
+                    <div class="row">
+                        Titulaire du compte : {{actor.third.individual.lastName}} {{actor.third.individual.firstName}}
+                        {{actor.third.company.CompanyName}}
+                        <br>Compte bancaire : {{actor.third.financialInformation.iban}}
+                    </div>
+                </div>
+                {{/ifCond}}
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <div style="page-break-after: always;"></div>
+    <div class="container">
+        <div class="grid-3" style="margin-top: 7px">
+            <div> &nbsp </div>
+            <div> &nbsp </div>
+            <div class="t-right t-medium">Document à conserver 5 ans <span>Page
+                    2/4</span></div>
+        </div>
+        <div class="row t-left mb-xs no-mrg t-purple-bold">
+            <div class="t-medium">Détail de la facture du {{invoice.billDate}} N°{{invoice.reference}}</div>
+        </div>
+        <div class="row disp-ib pad-1">
+            <div class="row soft-grey-bg pad-1 disp-ib t-medium mb-xs">
+                <div class="row">
+                    <div class="float-l w-3 t-left t-grey l-xs">Energie</div>
+                    <div class="float-l w-2 t-right t-grey pr-xs">{{dynamicTranslate "param_market" contrat.market}}</div>
+                    <div class="float-l w-3 t-left t-grey bw-l l-xs pl-xs">Puissance</div>
+                    <div class="float-l w-2 t-right t-grey">{{capacities.value}}/{{capacities.unit}}</div>
+                </div>
+                <div class="row">
+                    <div class="float-l w-3 t-left t-grey">PDL</div>
+                    <div class="float-l w-2 t-right t-grey pr-xs">{{pos.id}}</div>
+                    <div class="float-l w-3 t-left t-grey bw-l l-xs pl-xs">Tarif acheminement</div>
+                    <div class="float-l w-2 t-right t-grey">{{configuration.gridRate}}</div>
+                </div>
+                <div class="row">
+                    <div class="float-l w-3 t-left t-grey">Consommation de référence</div>
+                    <div class="float-l w-2 t-right t-grey pr-xs">{{estimate.value}} {{estimate.unit}}</div>
+                    <div class="float-l w-3 t-left t-grey bw-l l-xs pl-xs">Catégorie</div>
+                    <div class="float-l w-2 t-right t-grey">{{configuration.posCategory}}</div>
+                </div>
+                <div class="row">
+                    <div class="float-l w-3 t-left t-grey">Profil</div>
+                    <div class="float-l w-2 t-right t-grey pr-xs">{{configuration.profile}}</div>
+                    <div class="float-l w-3 t-left t-grey bw-l pl-xs">Option tarifaire</div>
+                    <div class="float-l w-2 t-right t-grey">{{configuration.touGroup}}</div>
+                </div>
+            </div>
+            <div class="row soft-grey-bg pad-1 disp-ib t-medium mb-xs">
+                <div class="mb-xxs t-grey t-large">Compteur {{meters.meterType}} N°{{meters.meterNumber}}</div>
+                <div class="row">
+                    <div class="float-l w-4 t-left t-grey"><b>Consommation</b></div>
+                    <div class="float-l w-2 t-center t-grey bw-l">Relevé début</div>
+                    <div class="float-l w-2 t-center t-grey bw-l">Relevé fin</div>
+                    <div class="float-l w-2 t-center t-grey bw-l">Conso kWh</div>
+                </div>
+                <div class="row">
+                    <div class="float-l w-4 t-left t-grey">Base - 06kVA - du 11/05/22 au 19/12/22</div>
+                    <div class="float-l w-2 t-center t-grey bw-l"><b>8213</b> (Enedis)</div>
+                    <div class="float-l w-2 t-center t-grey bw-l"><b>10054</b> (Enedis)</div>
+                    <div class="float-l w-2 t-center t-grey bw-l"><b>1841</b></div>
+                </div>
+            </div>
+            <div class="row disp-ib" style="padding-top:0;">
+                <div class="row">
+                    <div class="float-l w-4 t-left t-blue">
+                        <h3 class="no-mrg">Total Consommation</h3>
+                    </div>
+                    <div class="float-l w-2 t-center t-grey bw-l">&nbsp</div>
+                    <div class="float-l w-2 t-center t-grey">&nbsp</div>
+                    <div class="float-l w-2 t-center t-blue-bold bw-l t-large">1841</div>
+                </div>
+            </div>
+            {{#each invoice.details}}
+            <div class="container-table mb-xxs">
+                <table class="table-container">
+                    <thead class="t-grey">
+                        <tr style="margin-bottom: 3px;">
+                            <th>{{this.category}}</th>
+                            <th scope="col">Tou</th>
+                            <th scope="col">début</th>
+                            <th scope="col">fin</th>
+                            <th scope="col">quantité</th>
+                            <th scope="col">prix</th>
+                            <th scope="col">montantHT</th>
+                            <th scope="col">TVA</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t-grey">
+                        {{#each this.data}}
+                        <tr>
+                            <td>{{this.billLineSubCategory}}</td>
+                            <td>{{this.tou}}</td>
+                            <td>{{this.startDate}}</td>
+                            <td>{{this.endDate}}</td>
+                            <td>{{this.quantity}} {{this.quantityUnit}}</td>
+                            <td>{{this.price}} {{this.priceUnit}}</td>
+                            <td>{{this.totalWithoutVat}}€</td>
+                            <td>{{this.vatRate}}%</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="row disp-ib" style="padding-top:0;">
+                <div class="row">
+                    <div class="float-l w-4 t-left t-purple-bold">
+                        <h3 class="no-mrg">Total {{this.category}}</h3>
+                    </div>
+                    <div class="float-l w-2 t-center t-grey">&nbsp</div>
+                    <div class="float-l w-2 t-center t-grey">&nbsp</div>
+                    <div class="float-l w-2 t-center t-purple-bold t-large">{{this.total}}</div>
+                </div>
+            </div>
+            {{/each}}
+            {{#ifCond contrat.billingMode '===' 'PAYMENT_SCHEDULE'}}
+            <div class="purple-divider"></div>
+            <div class="t-blue-bold t-large mb-xxs">En conclusion : situation de votre compte depuis le démarrage de
+                votre
+                échéancier
+            </div>
+            <div class="blue-block mb-2 no-pad" style="display: -webkit-flex;">
+                <div class="grid-1-5 t-left" style="display: -webkit-flex; width: 75%;">
+                    <div class="pad-2 disp-ib" style="width: 100%;">
+                        <div class="grid-2 disp-ib t-medium t-grey">
+                            <div class="t-xs">Total facture hors TVA du {{invoice.billDate}}</div>
+                            <div class="t-right">{{invoice.totalWithoutVat}} €</div>
+                        </div>
+                        <div class="grid-2 disp-ib t-medium t-grey">
+                            <div class="t-xs">TVA 20,00 %</div>
+                            <div class="t-right">{{invoice.vatNR}} €</div>
+                        </div>
+                        <div class="grid-2 mb-xs t-medium t-grey">
+                            <div class="t-xs">TVA 5,50 %</div>
+                            <div class="t-right">{{invoice.vatRR}} €</div>
+                        </div>
+                        <div class="gery-divider"></div>
+                        <div class="grid-2 disp-ib">
+                            <div class="t-left t-medium"><b>Total facture TTC du {{invoice.billDate}}</b></div>
+                            <div class="t-right t-medium"><b>{{invoice.totalAmount}} €</b></div>
+                        </div>
+                        <div class="grid-2 disp-ib">
+                            <div class="t-left t-medium"><b>Paiements déjà effectués</b></div>
+                            <div class="t-right t-medium"><b>0€</b></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="purple-bg t-center"
+                    style="width: 25%;display: -webkit-flex;justify-content: center; -webkit-justify-content: center;align-items: center; -webkit-align-items: center">
+                    <div class="t-medium">
+                        <div style="margin-bottom: 30px;">
+                            <div class="t-medium">Montant totale</div>
+                            <div class="t-large"><b>{{invoice.totalAmount}} €</b></div>
+                            <div class="t-medium">TTC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/ifCond}}
+        </div>
+    </div>
+    <div style="page-break-after:avoid;"></div>
+
+    <div class="container">
+        <div class="row mb-1 t-blue t-left icon-title zoom">
+            <h3>Evolution de votre consommation facturée en kWh</h3>
+        </div>
+        <div class="row pos-rel pad-2 disp-ib mb-2">
+            <div class="w-2 float-l b-chart chart-1">
+                <div></div><span>du 04 au 11</span><b>20</b>
+            </div>
+            <div class="w-2 float-l b-chart chart-2">
+                <div></div><span>du 04 au 11</span><b>70</b>
+            </div>
+            <div class="w-2 float-l b-chart chart-3">
+                <div></div><span>du 04 au 11</span><b>44</b>
+            </div>
+            <div class="w-2 float-l b-chart chart-4">
+                <div></div><span>du 04 au 11</span><b>120</b>
+            </div>
+            <div class="w-2 float-l b-chart chart-5">
+                <div></div><span>du 04 au 11</span><b>60</b>
+            </div>
+            <div class="chart-base"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billariz invoice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            overflow-wrap: break-word;
+            /* word-break: break-all; */
+            white-space: normal;
+            word-break: keep-all;
+            animation: none !important;
+            transition: none !important;
+        }
+
+        @page:first {
+            margin-top: 0mm;
+            margin-bottom: 5mm;
+        }
+
+        @page {
+            margin-top: 10mm;
+            margin-bottom: 10mm;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            padding: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100%;
+            width: 100%;
+            /* width: 1080px; */
+            /* height: 1920px; */
+            position: relative;
+        }
+
+        .no-break {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            display: inline-block;
+        }
+
+        header {
+            width: 100%;
+            min-height: 100px;
+            gap: 20px;
+        }
+
+        .logo {
+            background-color: #003958;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 90px;
+            font-size: 20px;
+            font-weight: bold;
+            height: 90px;
+            width: 90px;
+            float: left;
+        }
+
+        .card {
+            background-color: #F8FAFC;
+            border-radius: 10px;
+            padding: 10px 25px;
+            float: left;
+            margin-left: 20px;
+            height: 90px !important;
+            width: calc(50% - 20px);
+        }
+
+
+
+        .card p {
+            color: #0071AF;
+        }
+
+        .card span {
+            display: block;
+            font-weight: 700;
+            color: #003958;
+            margin: 5px 0;
+        }
+
+        .cardBox {
+            position: relative;
+            float: right;
+            width: 80%;
+            height: 100px;
+        }
+
+        .total {
+            padding: 30px 30px;
+            color: white;
+            background-color: #003958;
+            border-radius: 10px;
+            /* margin-top: 10px; */
+            height: 150px;
+            clear: both;
+        }
+
+        .total .date {
+            border-radius: 10px;
+            background-color: white;
+            padding: 20px;
+            float: left;
+        }
+
+        .total .date p {
+            color: #0071AF;
+            margin-bottom: 5px;
+        }
+
+        .total .date span {
+            color: #003958;
+            font-weight: 700;
+
+        }
+
+        .total .price {
+            float: right;
+        }
+
+        .total .price p {
+            color: #C1D9E8;
+            font-weight: 500;
+        }
+
+        .total .price span {
+            display: inline-block;
+            margin: 7px 0;
+            font-weight: bold;
+        }
+
+        .main {
+            margin-top: 10px;
+            clear: both;
+        }
+
+        .sidebar {
+            width: 32%;
+            float: left;
+        }
+
+        .sidebar .support {
+            border-radius: 10px;
+            border: #EBEFF4 1px solid;
+            padding: 12px;
+        }
+
+        .sidebar .support div{
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        .sidebar .support .info-support {
+            /* display: flex;
+            flex-direction: column; */
+            /* gap: 15px; */
+            margin-top: 10px;
+        }
+
+        .sidebar .support .info-support p {
+            color: #0A5279;
+            font-weight: 700;
+        }
+
+        .sidebar .support .info-support div {
+            color: #0071AF;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .sidebar .support .info-support span {
+            color: #4B5563;
+            font-weight: 400;
+        }
+
+        .informations .info-input {
+            width: calc(50% - 20px);
+            float: left;
+            margin: 0 25px 15px 0;
+        }
+
+        .informations .info-input .info-label {
+            color: #6B7280;
+            margin-bottom: 5px;
+        }
+
+
+        .main-info {
+            margin-left: 10px;
+            width: calc(68% - 10px);
+            float: left;
+        }
+
+        .info-box {
+            border-radius: 10px;
+            border: #EBEFF4 1px solid;
+            padding: 15px;
+        }
+
+
+        .informations .info-card {
+            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #F8FAFC;
+            margin: 20px 0;
+        }
+
+        .prochaine-card {
+            padding: 10px 15px;
+            background-color: #F8FAFC;
+            width: calc(50% - 10px);
+            float: left;
+            border-radius: 10px;
+        }
+
+        .prochaine-card:first-child {
+            margin-right: 20px;
+        }
+
+        .prochaine-card:last-child{
+            float: right;
+        }
+
+        .prochaine-box {
+            width: 100%;
+            height: 80px;
+        }
+
+        .f-xxs {
+            font-size: 4px;
+        }
+
+        .f-xs {
+            font-size: 6px;
+
+        }
+
+        .f-s {
+            font-size: 12px;
+        }
+
+        .f-m {
+            font-size: 14px;
+        }
+
+        .f-medium {
+            font-size: 20px;
+        }
+
+        .f-large {
+            font-size: 24px;
+        }
+
+
+
+        .details {
+            margin: 10px 0;
+            clear: both;
+        }
+
+        .details-box {
+            margin: 20px 0;
+            width: 100%;
+            height: 70px;
+        }
+
+        .details-box .details-card:last-child {
+            background-color: #003958;
+            margin-right: 0;
+        }
+
+        .details-card {
+            text-align: center;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #F8FAFC;
+            float: left;
+            width: calc(34% - 7px);
+            margin-right: 5px;
+        }
+
+        .details-card p:first-child {
+            color: #6B7280;
+
+        }
+
+        .details-card p:last-child {
+            color: #003958;
+            font-weight: 600;
+        }
+
+        .paiement-box {
+            color: #6B7280;
+            background-color: #F8FAFC;
+            border-radius: 10px;
+            padding: 15px;
+            clear: both;
+            height: 52px;
+        }
+
+        .paiement {
+            background-color: #F0FDF4;
+            color: #15803D;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .urgenece {
+            border-radius: 10px;
+            background-color: #FEF2F2;
+            border: 1px solid #FECACA;
+            color: #991B1B;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .contact {
+            border-radius: 10px;
+            background-color: #FEFCE8;
+            border: 1px solid #FCF5BF;
+            color: #713F12;
+            padding: 10px;
+        }
+
+        .facture-details {
+            min-height: 20px;
+        }
+
+        .facture-details-card {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #F8FAFC;
+            border: 1px solid #EBEFF4;
+            min-height: 130px;
+        }
+
+        .facture-details-card div {
+            width: calc(25% - 30px);
+            margin: 0 30px 30px 0;
+            float: left;
+        }
+
+        .facture-details-card div:nth-of-type(4) {
+            margin-right: 0;
+        }
+
+        .facture-details-card div:nth-of-type(8) {
+            margin-right: 0;
+        }
+
+        .facture-details-card div:nth-of-type(5) {
+            clear: both;
+        }
+
+
+        th:first-child,
+        td:first-child {
+            border-left: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            border: none;
+            padding: 0px 10px;
+        }
+
+
+
+        .table-consommation {
+            margin-top: 20px;
+        }
+
+        .table-consommation td,
+        .table-consommation th {
+            padding: 10px 0;
+            color: #6B7280 !important;
+            font-size: 12px;
+        }
+        
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tr, td, th {
+            page-break-inside: avoid;
+        }
+
+         .table-consommation tbody td {
+            font-size: 10px;
+        }
+
+
+        .table-consommation tbody tr,
+        .table-consommation thead tr {
+            border-bottom: 1px solid #EBEFF4;
+        }
+
+        .facture-table-card {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #F8FAFC;
+            border: 1px solid #EBEFF4;
+        }
+
+
+        .table-product {
+            width: 100%;
+            word-wrap: break-word;
+            border-collapse: collapse;
+            page-break-inside: auto;
+        }
+
+        .table-product thead {
+            background-color: #003958;
+            border-radius: 10px 10px 0 0;
+            font-size: 12px;
+            display: table-header-group;
+        }
+        
+         .table-product tfoot {
+            display: table-header-group;
+        }
+
+        .table-product thead th,
+        .table-product thead td {
+            color: white;
+            font-size: 10px;
+            page-break-inside: avoid;
+        }
+
+        .table-product th,
+        .table-product td {
+            padding: 10px;
+            color: #6B7280;
+            font-size: 10px;
+            page-break-inside: avoid;
+        }
+
+        .table-product tfoot th,
+        .table-product tfoot td {
+            color: #003958;
+            font-weight: 600;
+            padding-bottom: 15px;
+            font-size: 12px;
+            page-break-inside: auto;
+        }
+
+        .table-product tfoot tr:last-child {
+            border-bottom: 1px solid #EBEFF4;
+        }
+
+        .table-product thead th:first-child,
+        .table-product thead td:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .table-product thead th:last-child,
+        .table-product thead td:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .evolution {
+            position: relative;
+            margin-top: 40px;
+            height: 400px;
+        }
+
+        .evolution-page {
+            height: calc(100vh - 40px);
+        }
+
+        .situation-details {
+            color: #6B7280;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            position: relative;
+            height: 20px;
+        }
+
+        .situation-details p {
+            position: absolute;
+        }
+
+        .situation-details p:first-child {
+            left: 0;
+        }
+
+        .situation-details p:last-child {
+            color: black;
+            font-weight: 700;
+            right: 0;
+        }
+
+
+        .situation-result {
+            color: #0071AF;
+            font-weight: 600;
+            padding-top: 0px;
+            position: relative;
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        .situation-result p {
+            position: absolute;
+        }
+
+        .situation-result p:first-child {
+            left: 0;
+        }
+
+        .situation-result p:last-child {
+            right: 0;
+        }
+
+        .evolution {
+            border-radius: 10px;
+            border: 1px solid #EBEFF4;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .evolution h3 {
+            color: #003958;
+        }
+
+        .signature {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #003958;
+            font-weight: bold;
+            font-size: 10vw;
+            height: 500px;
+        }
+
+
+
+        .center-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* position: relative; */
+        }
+        /* .center-icon > svg{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        } */
+
+        .clear {
+            clear: both;
+        }
+
+        .charts {
+            margin-top: 80px;
+            position: absolute;
+            width: 100%;
+            top: 60%;
+        }
+
+        .charts .chart-container {
+            width: 20%;
+            float: left;
+        }
+
+        .bars {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .bars .bar {
+            position: absolute;
+            border-radius: 5px 5px 0 0;
+            width: 30px;
+            text-align: center;
+            bottom: 0;
+        }
+
+        .bars .bar:first-child {
+            left: 0;
+            background-color: #003958;
+        }
+
+        .bars .bar:last-child {
+            background-color: #51BCF6;
+            left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div style="position: absolute; left: -20px;">
+            <svg width="30" height="900">
+                <text x="0" y="0" transform="rotate(90 0,0)" font-size="10">
+                    © 2025 Billariz. Tous droits réservés.  Document à conserver 5 ans.
+                </text>
+            </svg>
+        </div>
+        <header>
+            <div class="logo">
+                Billariz
+            </div>
+            <div class="cardBox">
+
+                <div class="card">
+                    <p class="f-s">Facturé à</p>
+                    <span class="f-s">{{dynamicTranslate "param_titleCode" individual.titleCode}} {{individual.lastName}} {{individual.firstName}}
+                    <p class="f-s"> {{address.number}}
+                                {{address.street}}
+                                {{address.number}}
+                                {{address.box}}
+                                {{address.postalCode}}
+                                {{address.city}}
+                    </p>
+                </div>
+                <div class="card">
+                    <p class="f-s center-icon">
+                        <svg width="20" height="21" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.50024 1.50012H3.00024C2.73503 1.50012 2.48067 1.60548 2.29314 1.79302C2.1056 1.98055 2.00024 2.23491 2.00024 2.50012V10.5001C2.00024 10.7653 2.1056 11.0197 2.29314 11.2072C2.48067 11.3948 2.73503 11.5001 3.00024 11.5001H9.00024C9.26546 11.5001 9.51981 11.3948 9.70735 11.2072C9.89489 11.0197 10.0002 10.7653 10.0002 10.5001V4.00012L7.50024 1.50012Z"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.99976 1.50012V3.50012C6.99976 3.76534 7.10511 4.01969 7.29265 4.20723C7.48019 4.39477 7.73454 4.50012 7.99976 4.50012H9.99976"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4.99976 5H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M7.99976 6.99988H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M7.99976 9.00012H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Facture
+                    </p>
+                    <span class="f-s">N° {{invoice.reference}}</span>
+                    <p class="f-s">du {{invoice.billDate}}</p>
+                </div>
+            </div>
+        </header>
+        <div class="total">
+            <div class="date">
+                <p class="f-s center-icon">
+                    <svg width="20" height="21" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 1.5V3.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 1.5V3.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M9.5 2.5H2.5C1.94772 2.5 1.5 2.94772 1.5 3.5V10.5C1.5 11.0523 1.94772 11.5 2.5 11.5H9.5C10.0523 11.5 10.5 11.0523 10.5 10.5V3.5C10.5 2.94772 10.0523 2.5 9.5 2.5Z"
+                            stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M1.5 5.5H10.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Prélevé le
+                </p>
+                <span class="f-s">{{invoice.paymentDate}}</span>
+            </div>
+            <div class="price">
+                <p class="f-m">Montant total à payer</p>
+                <span class="f-medium">{{invoice.totalAmount}} €</span>
+                <p class="f-m">TTC</p>
+            </div>
+        </div>
+        <div class="main">
+            <!-- Support et contact  -->
+            <div class="sidebar">
+                <div class="support">
+                    <h3 class="f-m">Support et Contact</h3>
+                    <div class="info-support">
+                        <div>
+                            <div class="center-icon f-m" style="display: flex; align-items: center; gap: 5px;">
+                                <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.99961 11.4999C8.76103 11.4999 10.9996 9.26133 10.9996 6.49991C10.9996 3.73848 8.76103 1.49991 5.99961 1.49991C3.23819 1.49991 0.999611 3.73848 0.999611 6.49991C0.999611 9.26133 3.23819 11.4999 5.99961 11.4999Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M5.99961 1.49991C4.71573 2.84799 3.99961 4.63828 3.99961 6.49991C3.99961 8.36154 4.71573 10.1518 5.99961 11.4999C7.28349 10.1518 7.99961 8.36154 7.99961 6.49991C7.99961 4.63828 7.28349 2.84799 5.99961 1.49991Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M0.999611 6.5H10.9996" stroke="#0071AF" stroke-width="0.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                En ligne
+                            </div>
+                            <span class="f-m">www.billariz.com</span> <br>
+                            <p class="f-m" style="margin-top: 5px;">rubrique : contact</p> 
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <div class="center-icon f-m" style="display: flex; align-items: center; gap: 5px;">
+                                <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.9998 4.00006L6.50426 6.86356C6.3517 6.95217 6.17842 6.99884 6.00201 6.99884C5.82559 6.99884 5.65231 6.95217 5.49976 6.86356L0.999756 4.00006"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M9.99976 2.50006H1.99976C1.44747 2.50006 0.999756 2.94778 0.999756 3.50006V9.50006C0.999756 10.0523 1.44747 10.5001 1.99976 10.5001H9.99976C10.552 10.5001 10.9998 10.0523 10.9998 9.50006V3.50006C10.9998 2.94778 10.552 2.50006 9.99976 2.50006Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                Email
+                            </div>
+                            <p class="f-m">contact@billariz.com</p>
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <div class="f-m" style="display: flex; align-items: center; gap: 5px;">
+                                <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.91576 8.78394C7.01902 8.83136 7.13536 8.8422 7.2456 8.81466C7.35585 8.78712 7.45342 8.72285 7.52226 8.63244L7.69976 8.39994C7.7929 8.27574 7.91369 8.17494 8.05254 8.10551C8.1914 8.03608 8.34451 7.99994 8.49976 7.99994H9.99976C10.265 7.99994 10.5193 8.1053 10.7069 8.29283C10.8944 8.48037 10.9998 8.73472 10.9998 8.99994V10.4999C10.9998 10.7652 10.8944 11.0195 10.7069 11.207C10.5193 11.3946 10.265 11.4999 9.99976 11.4999C7.61281 11.4999 5.32362 10.5517 3.63579 8.8639C1.94797 7.17607 0.999756 4.88689 0.999756 2.49994C0.999756 2.23472 1.10511 1.98037 1.29265 1.79283C1.48019 1.6053 1.73454 1.49994 1.99976 1.49994H3.49976C3.76497 1.49994 4.01933 1.6053 4.20686 1.79283C4.3944 1.98037 4.49976 2.23472 4.49976 2.49994V3.99994C4.49976 4.15518 4.46361 4.3083 4.39418 4.44715C4.32476 4.58601 4.22395 4.70679 4.09976 4.79994L3.86576 4.97544C3.77396 5.04553 3.70927 5.14523 3.68265 5.25761C3.65604 5.37 3.66915 5.48813 3.71976 5.59194C4.4031 6.97987 5.52697 8.10234 6.91576 8.78394Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                Téléphone
+                            </div>
+                            <div>
+                                <span class="f-m">Lun-Sam 8h-20h</span> <br>
+                                <p style="margin: 5px 0;" class="f-m">01 00 00 00 99</p>
+                                <span class="f-m">(Service et appel gratuits)</span>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <span class="f-m">Serveur vocal</span> <br>
+                                <div style="margin: 5px 0;" class="f-m">99 00</div>
+                                <span class="f-m" style="padding: 0;">(Service gratuit + prix appel)</span> <br>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="f-m">
+                                <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10 5.5C10 7.9965 7.2305 10.5965 6.3005 11.3995C6.21386 11.4646 6.1084 11.4999 6 11.4999C5.8916 11.4999 5.78614 11.4646 5.6995 11.3995C4.7695 10.5965 2 7.9965 2 5.5C2 4.43913 2.42143 3.42172 3.17157 2.67157C3.92172 1.92143 4.93913 1.5 6 1.5C7.06087 1.5 8.07828 1.92143 8.82843 2.67157C9.57857 3.42172 10 4.43913 10 5.5Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M6 7C6.82843 7 7.5 6.32843 7.5 5.5C7.5 4.67157 6.82843 4 6 4C5.17157 4 4.5 4.67157 4.5 5.5C4.5 6.32843 5.17157 7 6 7Z"
+                                        stroke="#0071AF" stroke-width="0.8" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                Courrier
+                            </div>
+                            <p style="margin-bottom: 5px;" class="f-m">Service client</p>
+                            <span class="f-m">TSA Billariz Cedex 99 999</span> <br>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="urgenece">
+                    <h3 class="center-icon f-m">
+                        <svg width="24" height="25" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.865 9.49999L6.86496 2.49999C6.77775 2.34609 6.65127 2.21808 6.49843 2.12902C6.34559 2.03997 6.17186 1.99304 5.99496 1.99304C5.81807 1.99304 5.64434 2.03997 5.4915 2.12902C5.33866 2.21808 5.21218 2.34609 5.12496 2.49999L1.12496 9.49999C1.03681 9.65267 0.990579 9.82594 0.990969 10.0022C0.99136 10.1785 1.03835 10.3516 1.12719 10.5039C1.21602 10.6562 1.34354 10.7823 1.49681 10.8694C1.65009 10.9565 1.82367 11.0016 1.99996 11H9.99996C10.1754 10.9998 10.3477 10.9535 10.4996 10.8656C10.6515 10.7778 10.7776 10.6515 10.8652 10.4995C10.9529 10.3476 10.999 10.1752 10.9989 9.99973C10.9989 9.82428 10.9527 9.65193 10.865 9.49999Z"
+                                stroke="#991B1B" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 5V7" stroke="#991B1B" stroke-width="0.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 8.99994H6.005" stroke="#991B1B" stroke-width="0.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <b>Urgence</b>
+                    </h3>
+                    <p class="f-s" style="margin-top: 10px;">Dépannage électricité enedis
+                        <b>0972675075</b>
+                    </p>
+                    <p class="f-s" style="color: #887676;">(Service gratuit + prix appel)</p>
+                </div>
+                <div class="contact">
+                    <p class="f-s" style="color: #887676;">Nous adresser votre chèque énergie</p>
+                    <div style="margin: 10px 0;">
+                        <div class="center-icon f-m">
+                            <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.99961 11.4999C8.76103 11.4999 10.9996 9.26133 10.9996 6.49991C10.9996 3.73848 8.76103 1.49991 5.99961 1.49991C3.23819 1.49991 0.999611 3.73848 0.999611 6.49991C0.999611 9.26133 3.23819 11.4999 5.99961 11.4999Z"
+                                    stroke="#713F12" stroke-width="0.8" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M5.99961 1.49991C4.71573 2.84799 3.99961 4.63828 3.99961 6.49991C3.99961 8.36154 4.71573 10.1518 5.99961 11.4999C7.28349 10.1518 7.99961 8.36154 7.99961 6.49991C7.99961 4.63828 7.28349 2.84799 5.99961 1.49991Z"
+                                    stroke="#713F12" stroke-width="0.8" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M0.999611 6.5H10.9996" stroke="#713F12" stroke-width="0.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <b>En ligne</b>
+                        </div>
+                        <p class="f-m">www.chequeenergie.gouv.fr/rviceclient@key.fr</p>
+                    </div>
+                    <div>
+                        <div class="center-icon f-m">
+                            <svg width="20" height="21" viewBox="0 0 12 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 5.5C10 7.9965 7.2305 10.5965 6.3005 11.3995C6.21386 11.4646 6.1084 11.4999 6 11.4999C5.8916 11.4999 5.78614 11.4646 5.6995 11.3995C4.7695 10.5965 2 7.9965 2 5.5C2 4.43913 2.42143 3.42172 3.17157 2.67157C3.92172 1.92143 4.93913 1.5 6 1.5C7.06087 1.5 8.07828 1.92143 8.82843 2.67157C9.57857 3.42172 10 4.43913 10 5.5Z"
+                                    stroke="#713F12" stroke-width="0.8" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M6 7C6.82843 7 7.5 6.32843 7.5 5.5C7.5 4.67157 6.82843 4 6 4C5.17157 4 4.5 4.67157 4.5 5.5C4.5 6.32843 5.17157 7 6 7Z"
+                                    stroke="#713F12" stroke-width="0.8" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <b>Courrier</b>
+                        </div>
+                        <p class="f-m">Cheque Énergie</p>
+                        <p class="f-m">TSA Billariz Cedex 99 999</p>
+                    </div>
+                </div>
+         
+            </div>
+            <!-- informations contract & details .. -->
+            <div class="main-info">
+                <div class="informations info-box">
+                    <h3 class="f-medium center-icon">
+                        <svg width="30" height="31" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.99999 15.1667C11.6819 15.1667 14.6667 12.1819 14.6667 8.49999C14.6667 4.8181 11.6819 1.83333 7.99999 1.83333C4.3181 1.83333 1.33333 4.8181 1.33333 8.49999C1.33333 12.1819 4.3181 15.1667 7.99999 15.1667Z"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 11.1667V8.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 5.83333H8.00667" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Informations contrat
+                    </h3>
+                    <div class="info-card">
+                        <div class="info-input">
+                            <p class="info-label f-m">N° client</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{customer.reference}}</p>
+                        </div>
+                        <div class="info-input" style="margin-right: 0;">
+                            <p class="info-label f-m">Point de livraison PDL</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{pos.reference}}</p>
+                        </div>
+
+                        <div class="info-input">
+                            <p class="info-label f-m">N° contrat</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{contrat.reference}}</p>
+                        </div>
+                        <div class="info-input" style="margin-right: 0;">
+                            <p class="info-label f-m">Puissance souscrite</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{capacities.value}}
+                                {{dynamicTranslate "param_sqType" capacities.unit}}</p>
+                        </div>
+
+                        <div class="info-input">
+                            <p class="info-label f-m">Titulaire du contrat</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{dynamicTranslate "param_titleCode" individual.titleCode}} {{individual.lastName}}
+                                {{individual.firstName}}</p>
+                        </div>
+                        <div class="info-input" style="margin-right: 0;">
+                            <p class="info-label f-m">Option tarifaire</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{dynamicTranslate "param_touGroup"
+                                configuration.touGroup}}</p>
+                        </div>
+                        <div class="info-input">
+                            <p class="info-label f-m">Email</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">{{contact.email}}</p>
+                        </div>
+                        <div class="info-input" style="margin-right: 0;">
+                            <p class="info-label f-m">Lieu de consommation</p>
+                            <p class="f-s" style="color: black; font-weight: 600;">
+                                {{pos.address.number}}
+                                {{pos.address.street}}
+                                {{pos.address.number}}
+                                {{pos.address.box}}
+                                {{pos.address.postalCode}}
+                                {{pos.address.city}}
+                            </p>
+                        </div>
+                    </div>
+                    <div style="clear: both;">
+                        <h3 style="margin-bottom: 10px;" class="f-medium center-icon"><svg width="24" height="25"
+                                viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 1.5V3.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8 1.5V3.5" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M9.5 2.5H2.5C1.94772 2.5 1.5 2.94772 1.5 3.5V10.5C1.5 11.0523 1.94772 11.5 2.5 11.5H9.5C10.0523 11.5 10.5 11.0523 10.5 10.5V3.5C10.5 2.94772 10.0523 2.5 9.5 2.5Z"
+                                    stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M1.5 5.5H10.5" stroke="#0071AF" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> Prochaines étapes</h3>
+                        <div class="prochaine-box">
+                            <div class="prochaine-card">
+                                <p class="f-s" style="color: #0071AF; font-weight: 500;">prochaine
+                                    facture</p>
+                                <p class="f-s" style="color: #003958; margin-top: 10px; font-weight: 700;">
+                                    {{contrat.billAfterDate}}</p>
+                            </div>
+                            <div class="prochaine-card">
+                                <p class="f-s" style="color: #0071AF; font-weight: 500;">prochain
+                                    relevé</p>
+                                <p class="f-s" style="color: #003958; margin-top: 10px;font-weight: 700;">
+                                    {{pos.readingCycle.defaultLabel}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box details no-break">
+                    <h3 class="f-medium center-icon"><svg width="24" height="25" viewBox="0 0 12 13" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.50024 1.50012H3.00024C2.73503 1.50012 2.48067 1.60548 2.29314 1.79302C2.1056 1.98055 2.00024 2.23491 2.00024 2.50012V10.5001C2.00024 10.7653 2.1056 11.0197 2.29314 11.2072C2.48067 11.3948 2.73503 11.5001 3.00024 11.5001H9.00024C9.26546 11.5001 9.51981 11.3948 9.70735 11.2072C9.89489 11.0197 10.0002 10.7653 10.0002 10.5001V4.00012L7.50024 1.50012Z"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.99976 1.50012V3.50012C6.99976 3.76534 7.10511 4.01969 7.29265 4.20723C7.48019 4.39477 7.73454 4.50012 7.99976 4.50012H9.99976"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4.99976 5H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M7.99976 6.99988H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M7.99976 9.00012H3.99976" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg> Détail de la facture</h3>
+                    <div class="details-box">
+                        <div class="details-card">
+                            <p class="f-s">Total HT</p>
+                            <p class="f-m">{{invoice.totalWithoutVat}} €</p>
+                        </div>
+                        <div class="details-card">
+                            <p class="f-s">TVA</p>
+                            <p class="f-m">{{invoice.totalVat}} €</p>
+                        </div>
+                        <div class="details-card" style="float: right;">
+                            <p class="f-s" style="color: white;">Total TTC</p>
+                            <p class="f-m" style="color: white; font-weight: bold;">{{invoice.totalAmount}} €</p>
+                        </div>
+                    </div>
+                    <div class="paiement-box">
+                        <p class="f-m" style="float: left;">Paiements déjà effectués</p>
+                        <p class="f-m" style="float: right;">0 €</p>
+                    </div>
+                </div>
+                <div class="info-box no-break" style="clear: both;">
+                    <h3 class="f-medium center-icon">
+                        <svg width="24" height="25" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.3333 3.83331H2.66666C1.93028 3.83331 1.33333 4.43027 1.33333 5.16665V11.8333C1.33333 12.5697 1.93028 13.1666 2.66666 13.1666H13.3333C14.0697 13.1666 14.6667 12.5697 14.6667 11.8333V5.16665C14.6667 4.43027 14.0697 3.83331 13.3333 3.83331Z"
+                                stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M1.33333 7.16669H14.6667" stroke="#0071AF" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Paiement par prélèvement automatique
+                    </h3>
+                    <div class="paiement">
+                        <p class="f-s">Le montant de <b>{{invoice.totalAmount}}€</b> sera prélevé le
+                            <b>{{invoice.paymentDate}}</b> sur le compte ci-dessous :
+                        </p>
+                        <p class="f-s" style="margin: 10px 0;">Titulaire du compte : {{actor.third.individual.lastName}}
+                            {{actor.third.individual.firstName}} {{actor.third.individual.lastName}}
+                            {{actor.third.company.CompanyName}}</p>
+                        <p class="f-s">Compte bancaire : {{actor.third.financialInformation.iban}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+   
+    <div style="page-break-before: always;"></div>
+    <div class="container facture-details">
+        <div style="position: absolute; left: -20px;">
+            <svg width="30" height="900">
+                <text x="0" y="0" transform="rotate(90 0,0)" font-size="10">
+                    © 2025 Billariz. Tous droits réservés.  Document à conserver 5 ans.
+                </text>
+            </svg>
+        </div>
+        <h3 class="f-medium center-icon" style="color: #003958; margin-bottom: 20px;">
+            <svg width="30" height="31"
+                viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M7.50024 1.50012H3.00024C2.73503 1.50012 2.48067 1.60548 2.29314 1.79302C2.1056 1.98055 2.00024 2.23491 2.00024 2.50012V10.5001C2.00024 10.7653 2.1056 11.0197 2.29314 11.2072C2.48067 11.3948 2.73503 11.5001 3.00024 11.5001H9.00024C9.26546 11.5001 9.51981 11.3948 9.70735 11.2072C9.89489 11.0197 10.0002 10.7653 10.0002 10.5001V4.00012L7.50024 1.50012Z"
+                    stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M6.99976 1.50012V3.50012C6.99976 3.76534 7.10511 4.01969 7.29265 4.20723C7.48019 4.39477 7.73454 4.50012 7.99976 4.50012H9.99976"
+                    stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4.99976 5H3.99976" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.99976 6.99988H3.99976" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.99976 9.00012H3.99976" stroke="#0071AF" stroke-linecap="round" stroke-linejoin="round" />
+            </svg> Détail de la facture du {{invoice.billDate}} / N° {{invoice.reference}}
+        </h3>
+        <!-- details card facture -->
+        <div class="facture-details-card" style="margin-bottom: 20px;">
+            <div>
+                <p class="f-s" style="color: #6B7280;">Energie</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{dynamicTranslate
+                    "param_market" contrat.market}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Puissance</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">
+                    {{capacities.value}} {{dynamicTranslate "param_sqType" capacities.unit}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">PDL</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{pos.reference}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Tarif acheminement</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{configuration.gridRate}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Consommation de référence</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{estimate.value}}
+                    {{dynamicTranslate "param_sqType" estimate.unit}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Catégorie</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{configuration.posCategory}}
+                </p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Profil</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{configuration.profile}}</p>
+            </div>
+            <div>
+                <p class="f-s" style="color: #6B7280;">Option tarifaire</p>
+                <p class="f-s" style="color: #111827; font-weight: 600; margin-top: 5px;">{{dynamicTranslate "param_touGroup" configuration.touGroup}}</p>
+            </div>
+        </div>
+        <div class="facture-table-card" style="margin-bottom: 20px; clear: both;">
+            <h3 class="f-s">Compteur {{meters.meterType}} N°{{meters.meterNumber}}</h3>
+            <!-- table -->
+            <table class="table-consommation">
+                <thead>
+                    <tr>
+                        <th colspan="2">Consommation</th>
+                        <th colspan="1">Relevé debut</th>
+                        <th colspan="1">Relevé fin</th>
+                        <th colspan="1">Coef. lecture</th>
+                        <th colspan="1">Coef. calorifique</th>
+                        <th colspan="1">Consommation</th>
+                    </tr>
+                </thead>
+                 {{#each meterReads}}
+                <tbody>
+                    {{#each this.meterReadDetails}}
+                    <tr>
+                        <td colspan="2">{{this.meterReadId}} - {{dynamicTranslate "param_tou" this.tou}}</td>
+                        <td style="color: black !important;" colspan="1"><b>{{this.startDate}}</b><br>{{this.startValue}}</td>
+                        <td style="color: black !important;" colspan="1"><b>{{this.endDate}}</b><br>{{this.endValue}} ({{dynamicTranslate "param_meterReadQuality" ../quality}})</td>
+                        <td style="color: black !important;" colspan="1"><b>{{../climaticCoef}}</b></td>
+                        <td style="color: black !important;" colspan="1"><b>{{../calorificCoef}}</b></td>
+                        <td style="color: black !important;" colspan="1"><b>{{this.quantity}} {{dynamicTranslate "param_sqType" this.unit}}</b></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                 {{/each}}
+                 
+                <tfoot>
+                    <tr>
+                        <th colspan="6" style="color: #0071AF !important;" align-item="left">Total Consommation</th>
+                        <th style="color: #0071AF !important;" align-item="right">{{totalQuantity}} kWh</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        {{#each invoice.details}}
+        <table class="table-product" style="margin-bottom: 15px;">
+            <thead style="background-color: #003958; color: white;">
+                <tr>
+                    <th>{{dynamicTranslate "param_serviceElementCategory" this.category}}</th>
+                    <th>Poste tarifaire</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                    <th>Montant HT</th>
+                    <th>TVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {{#each this.data}}
+                <tr>
+                    <td>{{dynamicTranslate "param_serviceElementSubCategory" this.billLineSubCategory}}</td>
+                    <td>{{dynamicTranslate "param_tou" this.tou}}</td>
+                    <td>{{this.startDate}}</td>
+                    <td>{{this.endDate}}</td>
+                    <td>{{this.quantity}} {{dynamicTranslate "param_sqType" this.quantityUnit}}</td>
+                    <td>{{this.price}} {{dynamicTranslate "param_priceUnit" this.priceUnit}}</td>
+                    <td>{{this.totalWithoutVat}} €</td>
+                    <td>{{this.vatRate}}%</td>
+                </tr>
+                {{/each}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">Total {{dynamicTranslate "param_serviceElementCategory" this.category}}</td>
+                    <td>{{this.total}} €</td>
+                </tr>
+            </tfoot>
+        </table>
+        {{/each}}
+
+    </div>
+   
+
+    <div class="container evolution-page">
+         <div style="position: absolute; left: -20px;">
+            <svg width="30" height="900">
+                <text x="0" y="0" transform="rotate(90 0,0)" font-size="10">
+                    © 2025 Billariz. Tous droits réservés.  Document à conserver 5 ans.
+                </text>
+            </svg>
+        </div>
+        {{#ifCond contrat.billingMode '===' 'PAYMENT_SCHEDULE'}}
+        <div class="facture-table-card" style="margin-top: 0px;">
+            <h3 class="f-m center-icon" style="margin-bottom: 20px;">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z"
+                        stroke="#003958" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 2V6C14 6.53043 14.2107 7.03914 14.5858 7.41421C14.9609 7.78929 15.4696 8 16 8H20"
+                        stroke="#003958" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9 15L11 17L15 13" stroke="#003958" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Situation de votre compte depuis le démarrage de votre échéancier
+            </h3>
+            <div style="border-bottom: 1px solid #EBEFF4;">
+                <div class="situation-details">
+                    <p>Total facture hors TVA du {{invoice.billDate}}</p>
+                    <p>{{invoice.totalWithoutVat}} €</p>
+                </div>
+                <div class="situation-details">
+                    <p>TVA</p>
+                    <p>{{invoice.totalVat}} €</p>
+                </div>
+            </div>
+
+            <!-- result -->
+            <div style="border-bottom: 1px solid #EBEFF4;">
+            <div class="situation-details">
+                <p>Total facture TTC du {{invoice.billDate}}</p>
+                <p>{{invoice.totalAmount}} €</p>
+            </div>
+            <div class="situation-result">
+                <p>Paiements déjà effectués</p>
+                <p>0 €</p>
+            </div>
+        </div>
+            <div class="situation-result">
+                <p>Reste à payer</p>
+                <p>{{invoice.totalAmount}} €</p>
+            </div>
+        </div>
+        {{/ifCond}}
+        <div class="evolution">
+            <h3 class="f-medium center-icon">
+                <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 20V10" stroke="#003958" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M18 20V4" stroke="#003958" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M6 20V16" stroke="#003958" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Evolution de votre consommation facturée en kWh
+            </h3>
+            <!-- chart -->
+            <div class="charts">
+                <!-- Bar -->
+                <div class="chart-container">
+                    <div class="bars">
+                        <div class="bar" style="height: 80px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                        <div class="bar" style="height: 150px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                    </div>
+                    <div>{{dateChartXXX}}</div>
+                </div>
+                <div class="chart-container">
+                    <div class="bars">
+                        <div class="bar" style="height: 180px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                        <div class="bar" style="height: 150px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                    </div>
+                    <div>{{dateChartXXX}}</div>
+                </div>
+                <div class="chart-container">
+                    <div class="bars">
+
+                        <div class="bar" style="height: 150px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                        <div class="bar" style="height: 80px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                    </div>
+                    <div>{{dateChartXXX}}</div>
+                </div>
+                <div class="chart-container">
+                    <div class="bars">
+                        <div class="bar" style="height: 180px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                        <div class="bar" style="height: 150px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                    </div>
+                    <div>{{dateChartXXX}}</div>
+                </div>
+                <div class="chart-container">
+                    <div class="bars">
+                        <div class="bar" style="height: 50px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                        <div class="bar" style="height: 150px;">
+                            <p style="margin-top: -20px;color: #003958; font-weight: 700;">{{tauxChart}}</p>
+                        </div>
+                    </div>
+                    <div>{{dateChartXXX}}</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

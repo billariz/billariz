@@ -1,0 +1,492 @@
+{
+  "header": {
+    "connect": " Se connecter"
+  },
+  "home": {
+    "hero": {
+      "h1": {
+        "1": "Automatisez vos",
+        "2": "contrats, tarifications",
+        "3": "et",
+        "4": "facturations",
+        "5": "en toute simplicité."
+      },
+      "description": "Une plateforme tout-en-un pensée pour les acteurs des services récurrents : énergie, eau, déchets, abonnements et plus encore.",
+      "contactExpert": "Contacter un expert",
+      "requestDemo": "Demander une démo",
+      "badge": "Open Source · AGPL-3.0"
+    },
+    "section2": {
+      "forWho": "C’est pour qui ?",
+      "contract": "Contrat",
+      "pricing": "Tarification",
+      "invoicing": "Facturation",
+      "edition": "Édition",
+      "features": {
+        "1": "SaaS B2B et B2C avec facturation à l’usage, au temps ou au volume",
+        "2": "Opérateurs d’énergie, de réseaux d’eau et de gestion des déchets",
+        "3": "Entreprises de services récurrents ou par abonnement",
+        "4": "Entreprises publiques avec cycles contractuels ou concessions"
+      }
+    },
+    "section3": {
+      "note": "Fonctionnalités",
+      "h2": {
+        "1": "Toutes vos opérations contractuelles,",
+        "2": "simplifiées."
+      },
+      "description": "Comment Billariz vous aide à automatiser, valoriser et facturer sans effort.",
+      "features": {
+        "1": "Gestion intelligente des contrats et périmètres de facturation",
+        "2": "Modèles flexibles de valorisation (relevés, abonnements)",
+        "3": "Génération automatique de factures simples ou groupées (bordereaux)",
+        "4": "Validation de conformité (seuils, équilibres lignes de factures, etc.)",
+        "5": "Gouvernance et traçabilité totale (journalisation)"
+      }
+    },
+    "section4": {
+      "note": "Trouvez votre plan",
+      "h2": "Identifiez la meilleure solution pour vos besoins",
+      "description": "Nos experts vous accompagnent pour analyser vos besoins, configurer votre solution et garantir une facturation adaptée à votre activité."
+    },
+    "section5": {
+      "note": "Pourquoi choisir Billariz ?",
+      "h2": {
+        "1": "La solution",
+        "2": "complète",
+        "3": "pour gérer",
+        "4": "contrats",
+        "5": "et",
+        "6": "facturation",
+        "7": "sans friction."
+      },
+      "features": {
+        "1": "Plateforme tout-en-un, plus besoin de multiplier les outils",
+        "2": "Prête pour la facturation électronique (FR/UE)",
+        "3": "Gouvernance, conformité et traçabilité renforcées",
+        "4": "Worflow métier personnalisable, sans aucune ligne de code.",
+        "5": "APIs ouvertes pour une intégration facile à vos systèmes",
+        "6": "Scalable et cloud-native pour accompagner votre croissance"
+      },
+      "description": "Tout ce dont vous avez besoin pour automatiser vos processus contractuels, valoriser vos services et fiabiliser votre facturation, sans complexité ni outils dispersés"
+    },
+    "testimonials": {
+      "1": {
+        "content": "Un produit vraiment intéressant qui s'adapte aussi bien aux petites organisations qu'aux structures intermédiaires. La flexibilité de Billariz permet de gérer la facturation utilities sans complexité inutile. À découvrir sans hésiter.",
+        "title": "Co-fondateur — Uppli SAS"
+      },
+      "2": {
+        "content": "Lorem ipsum dolor sit amet consectetur. Bibendum quis fringilla odio maecenas magna eu ultrices aliquam egestas. Enim phasellus eu commodo nibh vitae amet elit. Ut natoque dui.",
+        "title": "CEO - Sky Cloud Consultancy"
+      },
+      "3": {
+        "content": "Lorem ipsum dolor sit amet consectetur. Bibendum quis fringilla odio maecenas magna eu ultrices aliquam egestas. Enim phasellus eu commodo nibh vitae amet elit. Ut natoque dui.",
+        "title": "CTO - Tech Innovations"
+      },
+      "4": {
+        "content": "Lorem ipsum dolor sit amet consectetur. Bibendum quis fringilla odio maecenas magna eu ultrices aliquam egestas. Enim phasellus eu commodo nibh vitae amet elit. Ut natoque dui.",
+        "title": "Director - Creative Solutions"
+      }
+    },
+    "workflow": {
+      "workflow": "Workflow",
+      "1": {
+        "title": "Contrat signé",
+        "h3": "Enregistrement du contrat",
+        "description": "Tout commence par un accord clair. Billariz enregistre vos contrats et prépare automatiquement les informations nécessaires pour lancer la facturation sans erreur."
+      },
+      "2": {
+        "title": "Installation",
+        "h3": "Configuration initiale",
+        "description": "Sur la base des options de démarrage pré-configurées, Billariz installe les Termes de Services (TOS) et les Elements de Service (SE) du contrat pour adapter la facturation à votre organisation et vos règles de gestion."
+      },
+      "3": {
+        "title": "Collecte des données",
+        "h3": "Rassemblement des informations clés",
+        "description": "Les données issues de votre activité sont automatiquement centralisées, assurant une base fiable pour la valorisation et le calcul de la facturation."
+      },
+      "4": {
+        "title": "Valorisation",
+        "h3": "Traduire les données en valeur monétaire",
+        "description": "À partir des données collectées, Billariz applique vos règles tarifaires pour valoriser précisément chaque élément facturable."
+      },
+      "5": {
+        "title": "Calcul de facturation",
+        "h3": "Montant à facturer",
+        "description": "Billariz calcule automatiquement les montants à facturer en tenant compte des règles contractuelles, des seuils, forfaits et unités consommées."
+      },
+      "6": {
+        "title": "Édition des factures",
+        "h3": "Génération des documents",
+        "description": "Les factures sont générées sous un format standard ou personnalisé, prêtes à être transmises à vos clients ou intégrées à votre système comptable."
+      },
+      "7": {
+        "title": "Validation",
+        "h3": "Contrôle avant émission",
+        "description": "Un processus de validation vous permet de vérifier les montants, les destinataires et les éléments de facturation avant l’envoi définitif."
+      },
+      "8": {
+        "title": "Mise à jour des statuts",
+        "h3": "Suivi et traçabilité",
+        "description": "Une fois les factures validées, Billariz met automatiquement à jour les statuts pour assurer un suivi précis de chaque étape : calculée, validée, en attente… Vous gardez le contrôle total."
+      }
+    },
+    "stats": {
+      "note": "Billariz en chiffres",
+      "items": {
+        "1": "langues supportées par instance",
+        "2": "étapes de workflow automatisé",
+        "3": "domaines métiers couverts",
+        "4": "configurable sans code"
+      }
+    },
+    "usecases": {
+      "note": "Cas d'usage",
+      "h2": {
+        "1": "Une solution adaptée à",
+        "2": "chaque métier"
+      },
+      "description": "Billariz s'adapte aux spécificités de chaque secteur — workflows configurables, contrats mono ou multi-site, mono ou multi-énergie.",
+      "sectors": {
+        "energy": {
+          "title": "Énergie",
+          "description": "Gestion de la facturation pour les opérateurs de distribution et fournisseurs d'énergie, avec support des contrats multi-site et multi-énergie.",
+          "items": {
+            "1": "Contrats mono et multi-énergie",
+            "2": "Facturation à la consommation ou au forfait",
+            "3": "Relevés et valorisation automatisés"
+          }
+        },
+        "water": {
+          "title": "Eau",
+          "description": "Pilotage des cycles contractuels pour les réseaux de distribution d'eau, avec gestion volumétrique et facturation par abonnement.",
+          "items": {
+            "1": "Facturation volumétrique et forfaitaire",
+            "2": "Gestion des concessions et contrats publics",
+            "3": "Suivi de consommation et alertes"
+          }
+        },
+        "waste": {
+          "title": "Déchets",
+          "description": "Automatisation de la facturation pour les opérateurs de collecte et de traitement des déchets, au tonnage ou à la levée.",
+          "items": {
+            "1": "Facturation au tonnage ou à la levée",
+            "2": "Gestion des tournées et périmètres",
+            "3": "Bordereaux groupés par site ou client"
+          }
+        },
+        "subscriptions": {
+          "title": "Abonnements",
+          "description": "Plateforme flexible pour les SaaS B2B et B2C avec facturation à l'usage, au temps ou au volume, multi-niveaux de service.",
+          "items": {
+            "1": "Facturation à l'usage, au temps ou au volume",
+            "2": "Gestion des niveaux de service (tiers)",
+            "3": "Renouvellement et résiliation automatisés"
+          }
+        }
+      }
+    },
+    "opensource": {
+      "note": "Open Source",
+      "h2": {
+        "1": "Transparent,",
+        "2": "extensible et communautaire"
+      },
+      "description": "Billariz est publié sous licence AGPL-3.0. Le code source est ouvert, auditable et déployable par n'importe quelle organisation.",
+      "cards": {
+        "license": {
+          "title": "Licence AGPL-3.0",
+          "description": "Le code source est libre. Toute modification doit être redistribuée sous la même licence. Une licence commerciale est disponible pour les usages propriétaires."
+        },
+        "deploy": {
+          "title": "Déployez vous-même",
+          "description": "Installez Billariz sur votre infrastructure avec Docker. Maîtrisez intégralement vos données et votre environnement."
+        },
+        "contribute": {
+          "title": "Contribuez",
+          "description": "Signalez des bugs, proposez des fonctionnalités ou soumettez des pull requests directement sur GitHub."
+        },
+        "support": {
+          "title": "Support commercial",
+          "description": "Uppli SAS propose un accompagnement professionnel : intégration, configuration, support SLA et développement sur mesure."
+        }
+      },
+      "stack": {
+        "title": "Stack technique"
+      },
+      "cta": "Voir sur GitHub"
+    }
+  },
+  "footer": {
+    "copyright": "2025 Billariz. Tous droits réservés.",
+    "address": "Adresse",
+    "contact": "Contact",
+    "contactForm": {
+      "title": "Contactez nous",
+      "name": "Nom et prénom",
+      "email": "Adresse email",
+      "message": "Votre message...",
+      "send": "Envoyer"
+    }
+  },
+  "navigation": {
+    "navigation": "Navigation",
+    "home": "Accueil",
+    "pricing": "Tarification",
+    "guides": "Guides",
+    "guide": {
+      "overview": "Introduction",
+      "model": "Modèle de données",
+      "orchestration": "Orchestration des processsus"
+    },
+    "documentation": "Documentation API",
+    "documentations": {
+      "swagger-ui": "Interface utilisateur Swagger",
+      "download": "Spécification JSON",
+      "auth": "Authentification"
+    },
+    "legal": "Légal",
+    "olicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "trust": "Confiance & Sécurité"
+  },
+  "pricing": {
+    "contact": "Contacter un expert",
+    "description": "Choisissez le plan qui évolue avec votre croissance",
+    "annual": "Annuelle",
+    "monthly": "Mensuelle",
+    "month": "mois",
+    "year": "an",
+    "chooseOffer": "Choisir ce plan",
+    "toggle": {
+      "community": "Community · Gratuit",
+      "support": "Plans avec support"
+    },
+    "community": {
+      "badge": "Open Source · AGPL-3.0",
+      "title": "Community",
+      "subtitle": "Gratuit, auto-hébergé, pour toujours",
+      "description": "Le code source complet de Billariz, librement accessible. Déployez sur votre propre infrastructure sans aucun coût de licence.",
+      "cta": "Voir sur GitHub",
+      "features": {
+        "0": "Code source complet (backend, frontend, printshop)",
+        "1": "Déploiement sur votre infrastructure",
+        "2": "Mises à jour communautaires",
+        "3": "Documentation technique complète",
+        "4": "Licence AGPL-3.0",
+        "5": "Support communautaire (GitHub Issues)"
+      },
+      "note": "Idéal pour les équipes techniques qui souhaitent maîtriser leur stack."
+    },
+    "demo": {
+      "title": "Réserver une démo",
+      "description": "Découvrez Billariz en action et trouvez la solution adaptée à vos besoins.",
+      "cta": "Réserver une démo"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "cta": "Parlons-en",
+      "q1": {
+        "question": "Quelle est la différence entre Community et les plans avec support ?",
+        "answer": "La version Community est le code open source sous AGPL-3.0 — gratuite, auto-hébergée, sans support Uppli. Les plans avec support incluent l'hébergement managé, le SLA, la maintenance réglementaire et l'accompagnement par nos équipes."
+      },
+      "q2": {
+        "question": "Puis-je utiliser la version Community en production ?",
+        "answer": "Oui, sans restriction. Vous êtes responsable de votre infrastructure et de votre maintenance. Si vous avez besoin d'un support ou d'une garantie de service, un plan payant est recommandé."
+      },
+      "q3": {
+        "question": "Qu'implique la licence AGPL-3.0 ?",
+        "answer": "Toute modification du code doit être publiée sous la même licence. Si vous souhaitez intégrer Billariz dans un produit propriétaire sans respecter l'AGPL, contactez-nous pour une licence commerciale."
+      }
+    },
+    "basic": {
+      "title": "Basic",
+      "description": "Idéal pour démarrer en toute simplicité",
+      "features": {
+        "0": "Gestion de contrats de base",
+        "1": "Modèles de tarification simples",
+        "2": "Export comptable (CSV/PDF)",
+        "3": "Support email standard",
+        "4": "Génération de factures individuelle"
+      }
+    },
+    "business": {
+      "title": "Business",
+      "description": "Automatiser et structurer à plus grande échelle",
+      "features": {
+        "0": "Tout le plan Basic",
+        "1": "Contrats dynamiques",
+        "2": "Tarification personnalisée",
+        "3": "Facturation groupée",
+        "4": "Relances automatiques"
+      }
+    },
+    "entreprise": {
+      "title": "Entreprise",
+      "description": "Sur-mesure pour des besoins complexes",
+      "features": {
+        "0": "Tout le plan Business",
+        "1": "API & intégrations avancées",
+        "2": "Support technique dédié",
+        "3": "Gouvernance & conformité",
+        "4": "Formation et accompagnement"
+      }
+    },
+    "support": {
+      "plans": {
+        "basic": {
+          "name": "Basic",
+          "details": "Pour les petites organisations"
+        },
+        "intermediate": {
+          "name": "Intermédiaire",
+          "details": "Pour les organisations en croissance"
+        },
+        "comfort": {
+          "name": "Confort",
+          "details": "Pour les grandes organisations"
+        }
+      },
+      "sections": {
+        "plans": "Plans",
+        "features": "Fonctionnalités",
+        "advanced": "Fonctionnalités avancées"
+      },
+      "features": {
+        "usage_right": {
+          "name": "Droit d'utilisation"
+        },
+        "cost_per_point": {
+          "name": "Coût / Point de service / an"
+        },
+        "cost_per_invoice": {
+          "name": "Coût / Facture"
+        },
+        "cost_per_print": {
+          "name": "Coût éditique / facture"
+        },
+        "nb_users": {
+          "name": "Nombre d'utilisateurs"
+        },
+        "infra_cost": {
+          "name": "Coût infra. / an"
+        },
+        "helpdesk": {
+          "name": "Accès au help-desk"
+        },
+        "maintenance": {
+          "name": "Maintenance réglementaire et corrective"
+        },
+        "billing_setup": {
+          "name": "Core billing setup"
+        },
+        "printshop_setup": {
+          "name": "Printshop setup"
+        },
+        "billing_workflow": {
+          "name": "Billing workflow customization"
+        },
+        "contract_workflow": {
+          "name": "Contracts workflows customization"
+        },
+        "ops_mgmt": {
+          "name": "Gestion opérationnelle"
+        },
+        "dedicated_contact": {
+          "name": "Interlocuteur dédié"
+        },
+        "integration": {
+          "name": "Assistance à l'intégration"
+        }
+      },
+      "values": {
+        "free": "Gratuit",
+        "unlimited": "Illimité",
+        "business_hours": "Heures ouvrées",
+        "custom_sla": "SLA personnalisé",
+        "standard": "Standard",
+        "simple": "Simple",
+        "advanced": "Avancée",
+        "partial": "Partielle",
+        "basic": "Basique"
+      }
+    }
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "editor": {
+      "title": "Éditeur",
+      "address": "Siège social : 59 rue de Ponthieu, Bureau 562, 75008 Paris",
+      "capital": "Capital social : 143 000 €",
+      "rcs": "Registre du Commerce et des Sociétés de Paris sous le numéro : 810 188 912",
+      "phone": "Téléphone : +33 (0)9 72 62 66 91",
+      "email_label": "E-mail :",
+      "legal_rep": "Représentant légal et directeur de la publication : Le Président",
+      "made_by": "Réalisation :",
+      "description": "Uppli SAS édite et met à disposition du public le site www.billariz.com, plateforme de présentation de la solution Billariz — logiciel open source de gestion de contrats, de tarification et de facturation à destination des acteurs des services récurrents (énergie, eau, déchets, abonnements).",
+      "acceptance": "Merci de lire attentivement les conditions ci-après avant d'utiliser ce site. L'utilisation du site Billariz.com vaut acceptation des présentes conditions. En accédant au site, tout internaute (ci-après « l'utilisateur ») s'engage à se conformer aux règles ci-après définies."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "access": {
+        "title": "Accès au site",
+        "content": "Le site Billariz.com est un site vitrine permettant de découvrir la solution Billariz, consulter la documentation, accéder aux tarifs et contacter l'équipe. Uppli SAS s'efforce de maintenir le site accessible en permanence, sans toutefois être tenue à une obligation de résultat. Des interruptions peuvent survenir à des fins de maintenance, de mise à jour ou pour toute raison d'ordre technique. Uppli SAS ne saurait être tenue responsable des conséquences de ces interruptions pour l'utilisateur."
+      },
+      "content": {
+        "title": "Contenu du site",
+        "content_before": "Les informations publiées sur Billariz.com (fonctionnalités, tarifs, documentation, guides) sont fournies à titre indicatif et peuvent évoluer sans préavis, notamment en lien avec les mises à jour de la solution Billariz. Uppli SAS s'efforce de maintenir ces informations exactes et à jour, mais ne peut en garantir l'exhaustivité à tout instant. Toute erreur ou omission constatée peut être signalée à"
+      },
+      "links": {
+        "title": "Liens hypertextes",
+        "content": "Le site Billariz.com peut contenir des liens vers des ressources externes (documentation GitHub, partenaires, outils tiers). Uppli SAS n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou à l'usage qui en est fait par l'utilisateur."
+      },
+      "law": {
+        "title": "Loi applicable",
+        "content": "Les présentes conditions d'utilisation sont soumises à la loi française. Uppli SAS se réserve le droit de les modifier à tout moment, notamment pour se conformer à toute nouvelle réglementation ou pour améliorer l'expérience utilisateur. Les utilisateurs sont invités à consulter régulièrement cette page pour prendre connaissance des évolutions."
+      }
+    },
+    "ip": {
+      "title": "Propriété intellectuelle",
+      "made_by": "Conception et réalisation :",
+      "site_content": "Le site Billariz.com et l'ensemble de ses éléments — textes, visuels, logos, icônes, données, structure — sont la propriété exclusive d'Uppli SAS, protégés par le droit de la propriété intellectuelle français et international.",
+      "license_before": "Le code source de la solution Billariz (billariz-corp, billariz-ui, billariz-printshop) est distribué sous licence",
+      "license_after": ". Toute utilisation commerciale sans accord préalable d'Uppli SAS est soumise à l'obtention d'une licence commerciale. Contact :",
+      "reproduction": "Toute reproduction ou représentation du site Billariz.com, intégrale ou partielle, à des fins commerciales, est expressément interdite sans autorisation écrite préalable d'Uppli SAS."
+    },
+    "data": {
+      "title": "Données personnelles",
+      "intro": "Uppli SAS collecte et traite des données à caractère personnel uniquement lorsque vous les renseignez volontairement via les formulaires disponibles sur Billariz.com (formulaire de contact, demande de démo).",
+      "rgpd_before": "Uppli SAS s'engage à protéger vos données personnelles conformément à la loi n°78-17 « Informatique et Libertés » et au règlement (UE) 2016/679 (RGPD). Pour toute information, vous pouvez consulter le site de la CNIL :",
+      "contact_form": {
+        "title": "Formulaire de contact et demande de démo",
+        "content": "Lorsque vous complétez le formulaire de contact ou de demande de démo, les données suivantes sont collectées : nom et prénom, adresse e-mail, société, fonction et contenu du message. Ces informations sont utilisées exclusivement pour répondre à votre demande et, avec votre consentement, pour vous adresser des communications relatives à la solution Billariz. Ce traitement est fondé sur votre consentement."
+      },
+      "storage": {
+        "title": "Stockage et durée de conservation",
+        "content": "Les données collectées sont destinées exclusivement à Uppli SAS et ne sont ni vendues ni cédées à des tiers. Elles sont conservées le temps nécessaire au traitement de votre demande ou, en cas d'abonnement à nos communications, jusqu'à votre désinscription. Uppli SAS met en œuvre les mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données."
+      },
+      "rights": {
+        "title": "Droits des personnes concernées",
+        "content_before": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition au traitement de vos données personnelles. Pour exercer ces droits, contactez notre délégué à la protection des données (DPO) :"
+      }
+    },
+    "cookies": {
+      "title": "Utilisation des cookies",
+      "intro": "Le site Billariz.com utilise des cookies techniques et analytiques afin d'améliorer votre expérience de navigation et de mesurer l'audience du site. Aucune donnée personnelle n'est transmise à des fins publicitaires.",
+      "settings": "Vous pouvez paramétrer votre navigateur pour accepter ou refuser les cookies. Voici les instructions pour les principaux navigateurs :",
+      "chrome": "Menu → Paramètres → Confidentialité → Paramètres de contenu → Cookies",
+      "firefox": "Menu → Options → Vie privée → Règles de conservation",
+      "safari": "Préférences → Sécurité → Bloquer les cookies",
+      "edge": "Paramètres → Confidentialité et sécurité → Cookies",
+      "warning": "Le refus de certains cookies peut affecter certaines fonctionnalités du site. Pour toute question, contactez-nous via le formulaire de contact disponible sur ce site."
+    }
+  },
+  "guide": {
+    "contribute": {
+      "title": "Cette page est ouverte aux contributions",
+      "description": "Vous avez repéré une erreur ou souhaitez améliorer la documentation ? Toute contribution est la bienvenue.",
+      "edit": "Modifier sur GitHub",
+      "suggest": "Suggérer une amélioration"
+    }
+  }
+}

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Facture - billariz invoice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+            size: A4;
+            margin: 1cm;
+            }
+    :root {
+      --primary-color: #9567E0;
+      --secondary-color: #57F5D2;
+      --background-color: #f0f0f0;
+      --text-color: #646466;
+      --white: #ffffff;
+      --soft-purple: #e8c7fd;
+      --soft-blue: #c7ebfc;
+      --soft-grey: #dadada;
+    }
+
+    /* Reset de base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--background-color);
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+    body {
+      padding: 1rem;
+    }
+
+    /* Conteneur principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Layout pour les deux colonnes : barre gauche (infos) et droite (facture) */
+    .lsd-bar, .rsd-bar {
+      background: var(--white);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .lsd-bar {
+      flex: 1 1 40%;
+    }
+    .rsd-bar {
+      flex: 1 1 55%;
+    }
+
+    /* Typographie et utilitaires */
+    h1, h2, h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    .t-center { text-align: center; }
+    .t-left { text-align: left; }
+    .t-right { text-align: right; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mt-1 { margin-top: 1rem; }
+
+    /* Blocs et séparateurs */
+    .block {
+      border: 1px solid var(--text-color);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .blue-block {
+      border-color: var(--primary-color);
+    }
+    .grey-block {
+      border-color: grey;
+    }
+    .purple-bg {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .soft-purple-bg {
+      background: var(--soft-purple);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Grilles en Flexbox */
+    .grid-3 {
+      display: flex;
+      gap: 1rem;
+    }
+    .grid-3 > div {
+      flex: 1;
+    }
+    .grid-2 {
+      display: flex;
+      gap: 1rem;
+    }
+    .grid-2 > div {
+      flex: 1;
+    }
+    .grid-1-5 {
+      display: flex;
+      gap: 1rem;
+    }
+    .grid-1-5 > div:first-child {
+      flex: 7;
+    }
+    .grid-1-5 > div:last-child {
+      flex: 3;
+    }
+
+    /* Style des tableaux */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #f0f0f0;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    thead {
+      background: var(--soft-purple);
+    }
+
+    /* Graphique des consommations */
+    .b-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      height: 220px;
+      margin-bottom: 2rem;
+    }
+    .b-chart > div {
+      flex: 1;
+      background: #c4d600;
+      border: 1px solid var(--text-color);
+      border-bottom: none;
+      position: relative;
+      border-radius: 4px 4px 0 0;
+    }
+    .b-chart > div span,
+    .b-chart > div b {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      left: 0;
+    }
+    .b-chart > div span {
+      bottom: -1.5rem;
+      font-size: 0.9rem;
+    }
+    .b-chart > div b {
+      bottom: 100%;
+      transform: translateY(-0.5rem);
+      font-size: 0.8rem;
+      color: var(--text-color);
+    }
+
+    /* Icônes en titres */
+    .icon-title {
+      position: relative;
+      padding-left: 40px;
+    }
+    .icon-title:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background-size: cover;
+      background-position: center;
+    }
+    .icon-title.desk:before {
+      background-image: url('data:image/png;base64,{{icons.computer}}');
+    }
+    .icon-title.phone:before {
+      background-image: url('data:image/png;base64,{{icons.phone}}');
+    }
+    .icon-title.letter:before {
+      background-image: url('data:image/png;base64,{{icons.letter}}');
+    }
+    .icon-title.home:before {
+      background-image: url('data:image/png;base64,{{icons.home}}');
+    }
+    .icon-title.bill:before {
+      background-image: url('data:image/png;base64,{{icons.bill}}');
+    }
+    .icon-title.clock:before {
+      background-image: url('data:image/png;base64,{{icons.clock}}');
+    }
+    .icon-title.euro:before {
+      background-image: url('data:image/png;base64,{{icons.euro}}');
+    }
+    .icon-title.electric:before {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAABeklEQVR4nO2WP0vDYBCHD3FQFP8MIk6CuDqoQyc/gOiqoyBCh0Kbu2RoF8mqOLiI4ODgIII4SjXvL5KhoIN+A3F0dXDQQUFJqeWNTWmqaQKlP3iWDLmHy3E5ol66JvnyCJUuxxuw7b7OF7e9fmLckeArFOtmuvMSjJmmArFLCOZI3C1iZOsYTobkejYZCcEGCT4bi6jdlhKMColCAFYnxFdT7UkwnsOLRJI4JVFHv3giUcfRBXLecPMif+0EXkiwF12iiNF/ShwSYyeACZPkdjA5CSuOwSz2JGrpdaKrOmFilSxnMUDBnUxWQsJ2h/ogVutJSuTIVGsBBPfEOE+7E+/EWGnv38F4CEVQaL223aXqzaFjOUMUaySpe8KP7Q3UfsE14FSfG94YsXpLRsIPq1dtHjz6iYn5wMWl43/OWMN41IbrLN6XR5eoaHfCfkoS6kKTKKUjITjQZmIzHQnGdl3CcJfTkshqS2ghHQnDyVR3vk++PJGORAL5BhgBEHEP8441AAAAAElFTkSuQmCC');
+    }
+    .icon-title.zoom:before {
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAACXBIWXMAAAsTAAALEwEAmpwYAAACfUlEQVR4nO2WX4hMURzHv/5TIqHwRB6kPMijEk8KCStFEUr+Nu7vNzubxcOUN+VdUuJJbdQSs93fb8ZlHyYPGw+elAdFK0JbdmUZRvfOnbtnZnd275k7dj3st6bm1Pmd+znn/H6/8wWmZaN2dw1IMmAtgOUdSIfBOgSS1yC5B5IjuKCL8U/UIavAehMkv8BaHvdH+gUs7Ujl5rUOgPJbwPqp9mPyDSy9ILkLlm6Q9oG1VDeniIy3IjmAk98RHnl1l6/gSBuy3vxRc1O55WDtqJxEdb68BfWsTAAg60E6YOzsKg50zZowzochfWqcyvMxoWOJpTdaKC2XrWKzXXNB8sQAuWgPQO5uY4GHQHmG9RrndClIP4bXOBCMrcTSHQKU4BTWoVmRpkY2kz9lAVBcENR+JQ88JJHfM6qJTfo4fqDjbjSqoRNJxfosXK8/fhDpLuMIDyaGILkTbug3st7seEGs+yMIJ783MQTr9Wi9s97CeEHpwuaR0tQziSFIH4SN67vtO1EOE/N2IoBsdiZIPoQQL+yCWV+GEJ+DamlWLFuNJL9mF0xyqSUVElWG/MF5d4NdcCq3yHg5h0D5TfYAQrVdtxmRnDBew/dB/4gPcDzyHqSDcHpWNwfhi+WGcS2DIOVxzYqf1KS36kzOMEj3oGmd7JsTOKpa99RfqX33MBzdBpadIDkN1vtBGY7tthKC+PL7BenXCa3dyPW9AcvPUSCJm1/noyVguRKY2oYAUgzywW/PvgOrB/HHrejCgTKFtYH1S7vHQHq08t9bhno1AmF3HyZVTqMTkbb/AERLLXmlWwLiyCFMMciPwL9MupwIZIoATBByt0fjaaFWfwESVyNlQFhb/wAAAABJRU5ErkJggg==');
+    }
+
+    /* Gestion des sauts de page pour la génération du PDF */
+    .page-break {
+      page-break-after: always;
+    }
+
+    /* Section d'en-tête de la facture */
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .invoice-header .document-info {
+      text-align: right;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Colonne gauche : Informations de contact et service -->
+    <aside class="lsd-bar">
+      <div class="mb-1">
+        <h3 class="t-left">NOUS CONTACTER</h3>
+        <p class="t-left">N° client : <strong>{{customer.reference}}</strong></p>
+        <p class="t-left">Identifiant Internet : <strong style="text-transform: uppercase;">{{customer.contact.email}}</strong></p>
+      </div>
+      <div class="block">
+        <div class="mb-1 icon-title desk t-large" style="font-weight:700;">Par Internet</div>
+        <div class="t-left">
+          <h3>key.fr</h3>
+        </div>
+        <div class="mb-1">
+          <div class="t-left t-xs" style="font-weight:700;">Par Internet</div>
+          <div class="t-left">
+            <h3>KEY & MOI</h3>
+          </div>
+        </div>
+        <div class="mb-1 t-left t-xs" style="font-weight:700;">Mail</div>
+        <div class="mb-1 t-left">
+          <h3>serviceclient@key.fr</h3>
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--text-color); margin-bottom: 1rem;">
+        <div class="mb-1 icon-title phone t-large" style="font-weight:700;">Par téléphone</div>
+        <div class="t-center mb-1" style="font-size:0.9rem;">
+          Du lundi au samedi dès 8h et jusqu’à 20h<br>
+          <strong>3004</strong><br>
+          (Service et appel gratuits)<br>
+          Mon Compte Sur Serveur Vocal<br>
+          <strong>09 70 83 33 33</strong><br>
+          (Service gratuit + prix appel)
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--text-color); margin-bottom: 1rem;">
+        <div class="mb-1 icon-title letter t-large" style="font-weight:700;">Par courrier</div>
+        <div class="t-center mb-1" style="font-size:0.9rem;">
+          <strong>KEY SERVICE CLIENTS</strong><br>
+          TSA 21941<br>
+          62978 ARRAS CEDEX 9
+        </div>
+        <hr style="border: none; border-top: 1px solid grey; margin-bottom: 1rem;">
+        <div class="t-center" style="font-size:0.9rem;">
+          <strong>Urgence dépannage Electricité (Enedis)</strong><br>
+          0972675075 (Service gratuit + prix appel)
+        </div>
+      </div>
+      <div class="mb-1">
+        <h3 class="t-left" style="font-weight:700; color: var(--primary-color);">NOUS ADRESSER VOTRE CHEQUE ENERGIE</h3>
+      </div>
+      <div class="block">
+        <div class="mb-1 icon-title desk t-large" style="font-weight:700;">Par Internet</div>
+        <p class="t-left" style="font-size:0.9rem;">https://www.chequeenergie.gouv.fr/</p>
+        <div class="mb-1 icon-title letter t-large" style="font-weight:700;">Par courrier</div>
+        <p class="t-left" style="font-size:0.9rem;">
+          KEY TSA 81401<br>
+          87014 LIMOGES Cedex 1
+        </p>
+      </div>
+      <div class="block blue-block">
+        <div class="mb-1 icon-title home t-large" style="font-weight:700;">Lieu de consommation</div>
+        <p class="t-left" style="font-size:0.9rem;">
+          <br>{{pos.address.number}} {{pos.address.street}}<br>
+          {{pos.address.number}} {{pos.address.box}}<br>
+          {{pos.address.postalCode}} {{pos.address.city}}
+        </p>
+        <div class="mb-1 t-left t-large" style="font-weight:700;">Titulaire du contrat</div>
+        <p class="t-left" style="font-size:0.9rem;">
+          M. {{customer.individual.lastName}} {{customer.individual.firstName}}
+        </p>
+        <p class="t-left" style="font-size:0.9rem;">N° de contrat : {{contrat.reference}}</p>
+        <p class="t-left" style="font-size:0.9rem;">
+          • Point de livraison (PDL) : {{pos.id}}<br>
+          • Puissance : {{capacities.value}} {{capacities.unit}}<br>
+          • {{configuration.touGroup}}
+        </p>
+      </div>
+    </aside>
+
+    <!-- Colonne droite : Détails de la facture -->
+    <main class="rsd-bar">
+      <div class="invoice-header grid-3 mb-1">
+        <div></div>
+        <div class="t-right" style="font-size:0.9rem;">Document à conserver 5 ans</div>
+        <div class="t-right" style="font-size:0.9rem;">Page 1/4</div>
+      </div>
+      <div class="grid-3 mb-2">
+        <div class="t-left">
+          <svg class="logo-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 707" style="height:50px;">
+            <defs>
+              <linearGradient id="a" x1="20.664%" x2="91.467%" y1="75.215%" y2="50%">
+                <stop offset="0%" stop-color="#582CFF"></stop>
+                <stop offset="100%" stop-color="#57F5D2"></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#a)" fill-rule="evenodd"
+              d="M628.838 774.315c-63.802 0-115.523-51.818-115.523-115.739 0-63.92 51.721-115.739 115.523-115.739 63.801 0 115.523 51.818 115.523 115.74 0 63.92-51.722 115.738-115.523 115.738zm-203.69-390.619c80.157-19.93 149.277-47.021 207.36-81.273 16.42-11.952 36.625-19 58.473-19 55.002 0 99.589 44.67 99.589 99.774 0 55.105-44.587 99.775-99.589 99.775-1.461 0-2.915-.031-4.361-.094l.025.094c-.884-.082-1.767-.163-2.647-.241a99.98 99.98 0 0 1-3.442-.299c-89.45-7.534-160.177 4.31-212.18 35.533a.195.195 0 0 1-.034-.048c-10.282 5.707-22.111 8.956-34.698 8.956-39.601 0-71.704-32.163-71.704-71.838 0-36.795 27.612-67.13 63.209-71.339zM753.102 792.85l-.045-.009c31.099-74.158 44.222-140.695 39.369-199.61a92.374 92.374 0 0 1-1.855-18.466c0-50.696 41.02-91.793 91.622-91.793 50.6 0 91.621 41.097 91.621 91.793 0 19.157-5.857 36.943-15.875 51.66-34.743 70.257-50.516 133.742-47.317 190.456a84.578 84.578 0 0 1 1.049 13.308c0 46.288-37.453 83.81-83.655 83.81-46.2 0-83.654-37.522-83.654-83.81 0-13.416 3.146-26.096 8.74-37.34zM468.752 943.266c-50.329-95.48-94.218-158.439-131.669-188.877-20.988-13.479-34.896-37.054-34.896-63.885 0-41.879 33.886-75.829 75.687-75.829 41.617 0 75.389 33.652 75.686 75.276 10.203 59.582 48.966 108.1 116.287 145.554 29.847 11.526 51.024 40.538 51.024 74.504 0 44.083-35.67 79.82-79.671 79.82-32.155 0-59.86-19.084-72.448-46.563z"
+              transform="translate(-302 -283)"></path>
+          </svg>
+        </div>
+        <div></div>
+      </div>
+      <div class="t-center mb-2" style="font-size:1rem;">
+        <h3>M. {{customer.individual.lastName}} {{customer.individual.firstName}}<br>
+          <span style="text-transform: uppercase;">{{customer.address.street}}</span><br>
+          {{customer.address.postalCode}} {{customer.address.city}}</h3>
+      </div>
+      <div class="block blue-block mb-2">
+        <div class="grid-1-5" style="display:flex;">
+          <div>
+            <div class="mb-1 icon-title bill t-large" style="font-weight:700;">
+              Facture du {{invoice.billDate}}
+            </div>
+            <div class="t-xs icon-title" style="font-weight:700;">
+              N° {{invoice.reference}}
+            </div>
+          </div>
+          <div class="soft-purple-bg" style="padding:1rem;">
+            <div class="grid-2" style="margin-bottom:1rem;">
+              <div style="font-size:0.8rem;">Total hors taxe</div>
+              <div class="t-right" style="font-size:0.8rem;">{{invoice.totalWithoutVat}} €</div>
+            </div>
+            <div class="grid-2" style="margin-bottom:1rem;">
+              <div style="font-size:0.8rem;">TVA</div>
+              <div class="t-right" style="font-size:0.8rem;">{{invoice.totalVat}} €</div>
+            </div>
+            <div class="grid-2" style="margin-bottom:1rem;">
+              <div style="font-size:0.8rem;">Paiements déjà effectués</div>
+              <div class="t-right" style="font-size:0.8rem;">0 €</div>
+            </div>
+            <hr style="border: none; border-top: 1px solid grey; margin-bottom: 1rem;">
+            <div class="grid-2">
+              <div style="font-size:1rem; font-weight:700;">Facture TTC</div>
+              <div class="t-right" style="font-size:1rem; font-weight:700;">{{invoice.totalAmount}} €</div>
+            </div>
+          </div>
+        </div>
+        <div class="purple-bg t-center" style="margin-top:1rem;">
+          <div style="margin-bottom:1rem;">
+            <div>Montant totale</div>
+            <div style="font-size:1.5rem; font-weight:700;">{{invoice.totalAmount}} €</div>
+            <div>TTC</div>
+          </div>
+          <div>
+            <div>Prélevé le</div>
+            <div>{{invoice.paymentDate}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="block grey-block mb-2">
+        <div class="mb-1 icon-title clock">
+          <div style="font-size:1rem; font-weight:700;">Les prochaines étapes</div>
+        </div>
+        <p class="t-left" style="font-size:0.9rem;"><span style="color: var(--primary-color);">•</span> Prochaine facture vers le {{contrat.billAfterDate}}.</p>
+        <p class="t-left" style="font-size:0.9rem;"><span style="color: var(--primary-color);">•</span> Votre prochain relevé de compteur vers le {{pos.readingCycle}}</p>
+      </div>
+      <div class="block blue-block">
+        <div class="mb-1 icon-title euro">
+          <div style="font-size:1rem; font-weight:700;">{{actor.titlePayment}}</div>
+        </div>
+        {{#ifCond actor.third.financialInformation.paymentMode '===' 'directDebit'}}
+        <div class="t-grey" style="font-size:0.9rem;">
+          <p class="mb-1">Le montant de {{invoice.totalAmount}} € sera prélevé le {{invoice.paymentDate}} sur le compte ci-dessous :</p>
+          <p class="mb-1">
+            Titulaire du compte : {{actor.third.individual.lastName}} {{actor.third.individual.firstName}} {{actor.third.company.CompanyName}}<br>
+            Compte bancaire : {{actor.third.financialInformation.iban}}
+          </p>
+        </div>
+        {{/ifCond}}
+      </div>
+    </main>
+  </div>
+  <div class="page-break"></div>
+  <div class="container">
+    <div class="grid-3" style="margin-top: 1rem;">
+      <div></div>
+      <div></div>
+      <div class="t-right" style="font-size:0.9rem;">Document à conserver 5 ans <span>Page 2/4</span></div>
+    </div>
+    <div class="mb-1 t-left" style="color: var(--primary-color); font-weight:700; font-size:1rem;">
+      Détail de la facture du {{invoice.billDate}} N°{{invoice.reference}}
+    </div>
+    <div class="block soft-grey-bg">
+      <div class="mb-1">
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Energie</div>
+          <div class="t-right" style="font-size:0.9rem;">{{contrat.market}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Puissance</div>
+          <div class="t-right" style="font-size:0.9rem;">{{capacities.value}}/{{capacities.unit}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">PDL</div>
+          <div class="t-right" style="font-size:0.9rem;">{{pos.id}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Tarif acheminement</div>
+          <div class="t-right" style="font-size:0.9rem;">{{configuration.gridRate}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Consommation de référence</div>
+          <div class="t-right" style="font-size:0.9rem;">{{estimate.value}} {{estimate.unit}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Catégorie</div>
+          <div class="t-right" style="font-size:0.9rem;">{{configuration.posCategory}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Profil</div>
+          <div class="t-right" style="font-size:0.9rem;">{{configuration.profile}}</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:0.9rem;">Option tarifaire</div>
+          <div class="t-right" style="font-size:0.9rem;">{{configuration.touGroup}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="block soft-grey-bg">
+      <div class="mb-1" style="font-size:1rem; color: var(--primary-color);">
+        Compteur {{meters.meterType}} N°{{meters.meterNumber}}
+      </div>
+      <div class="grid-3" style="align-items: center; border-bottom: 1px solid var(--text-color); padding-bottom: 0.5rem;">
+        <div style="font-size:0.9rem; font-weight:700;">Consommation</div>
+        <div class="t-center" style="font-size:0.9rem;">Relevé début</div>
+        <div class="t-center" style="font-size:0.9rem;">Relevé fin</div>
+        <div class="t-center" style="font-size:0.9rem;">Conso kWh</div>
+      </div>
+      <div class="grid-3" style="align-items: center; padding-top: 0.5rem;">
+        <div style="font-size:0.9rem;">Base - 06kVA - du 11/05/22 au 19/12/22</div>
+        <div class="t-center" style="font-size:0.9rem;"><strong>8213</strong> (Enedis)</div>
+        <div class="t-center" style="font-size:0.9rem;"><strong>10054</strong> (Enedis)</div>
+        <div class="t-center" style="font-size:0.9rem;"><strong>1841</strong></div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <div class="grid-3" style="align-items: center; border-bottom: 1px solid var(--primary-color); padding-bottom: 0.5rem;">
+        <div style="font-size:1rem; font-weight:700; color: var(--primary-color);">Total Consommation</div>
+        <div class="t-center"></div>
+        <div class="t-center"></div>
+        <div class="t-center" style="font-size:1rem; font-weight:700; color: var(--primary-color);">1841</div>
+      </div>
+    </div>
+    {{#each invoice.details}}
+    <div class="block soft-grey-bg mb-1">
+      <table>
+        <thead>
+          <tr>
+            <th>{{this.category}}</th>
+            <th>Tou</th>
+            <th>début</th>
+            <th>fin</th>
+            <th>quantité</th>
+            <th>prix</th>
+            <th>montantHT</th>
+            <th>TVA</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.data}}
+          <tr>
+            <td>{{this.billLineSubCategory}}</td>
+            <td>{{this.tou}}</td>
+            <td>{{this.startDate}}</td>
+            <td>{{this.endDate}}</td>
+            <td>{{this.quantity}} {{this.quantityUnit}}</td>
+            <td>{{this.price}} {{this.priceUnit}}</td>
+            <td>{{this.totalWithoutVat}}€</td>
+            <td>{{this.vatRate}}%</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class="mb-1">
+      <div class="grid-3" style="align-items: center;">
+        <div style="font-size:1rem; font-weight:700; color: var(--primary-color);">Total {{this.category}}</div>
+        <div></div>
+        <div></div>
+        <div class="t-center" style="font-size:1rem; font-weight:700; color: var(--primary-color);">{{this.total}}</div>
+      </div>
+    </div>
+    {{/each}}
+    {{#ifCond contrat.billingMode '===' 'PAYMENT_SCHEDULE'}}
+    <div style="border-top: 1px solid var(--primary-color); margin: 1rem 0;"></div>
+    <div class="t-blue" style="font-weight:700; font-size:1rem; margin-bottom: 1rem;">
+      En conclusion : situation de votre compte depuis le démarrage de votre échéancier
+    </div>
+    <div class="block blue-block" style="display:flex;">
+      <div style="flex: 7; padding: 1rem;">
+        <div class="grid-2" style="margin-bottom:1rem;">
+          <div style="font-size:0.9rem;">Total facture hors TVA du {{invoice.billDate}}</div>
+          <div class="t-right" style="font-size:0.9rem;">{{invoice.totalWithoutVat}} €</div>
+        </div>
+        <div class="grid-2" style="margin-bottom:1rem;">
+          <div style="font-size:0.9rem;">TVA 20,00 %</div>
+          <div class="t-right" style="font-size:0.9rem;">{{invoice.vatNR}} €</div>
+        </div>
+        <div class="grid-2" style="margin-bottom:1rem;">
+          <div style="font-size:0.9rem;">TVA 5,50 %</div>
+          <div class="t-right" style="font-size:0.9rem;">{{invoice.vatRR}} €</div>
+        </div>
+        <hr style="border: none; border-top: 1px solid grey; margin-bottom: 1rem;">
+        <div class="grid-2">
+          <div style="font-size:1rem; font-weight:700;">Total facture TTC du {{invoice.billDate}}</div>
+          <div class="t-right" style="font-size:1rem; font-weight:700;">{{invoice.totalAmount}} €</div>
+        </div>
+        <div class="grid-2">
+          <div style="font-size:1rem; font-weight:700;">Paiements déjà effectués</div>
+          <div class="t-right" style="font-size:1rem; font-weight:700;">0€</div>
+        </div>
+      </div>
+      <div class="purple-bg t-center" style="flex: 3; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+        <div style="margin-bottom:1rem;">
+          <div>Montant totale</div>
+          <div style="font-size:1.5rem; font-weight:700;">{{invoice.totalAmount}} €</div>
+          <div>TTC</div>
+        </div>
+      </div>
+    </div>
+    {{/ifCond}}
+  </div>
+  <div class="page-break"></div>
+  <div class="container">
+    <div class="mb-1 t-blue icon-title zoom" style="font-size:1rem; font-weight:700;">
+      <h3>Evolution de votre consommation facturée en kWh</h3>
+    </div>
+    <div class="b-chart">
+      <div style="height: 20px;">
+        <span>du 04 au 11</span>
+        <b>20</b>
+      </div>
+      <div style="height: 70px; background: #61cdf2;">
+        <span>du 04 au 11</span>
+        <b>70</b>
+      </div>
+      <div style="height: 44px;">
+        <span>du 04 au 11</span>
+        <b>44</b>
+      </div>
+      <div style="height: 120px; background: #61cdf2;">
+        <span>du 04 au 11</span>
+        <b>120</b>
+      </div>
+      <div style="height: 60px;">
+        <span>du 04 au 11</span>
+        <b>60</b>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
